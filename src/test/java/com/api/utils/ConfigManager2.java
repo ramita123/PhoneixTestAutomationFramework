@@ -27,28 +27,24 @@ public class ConfigManager2 {
 
 		switch (env) {
 
-		case "dev": {
+		case "dev"->
 
 			filePath = "config" + File.separator + "config.dev.properties";
-			break;
-		}
-		case "qa": {
+		
+		case "qa"->
 
 			filePath = "config" + File.separator + "config.qa.properties";
-			break;
-		}
+		
 
-		case "uat": {
+		case "uat"->
 
 			filePath = "config"+File.separator+"config.uat.properties";
-			break;
-		}
+		
 
-		default: {
-
+		default->
 			filePath = "config" + File.separator + "config.properties";
 			
-		}
+		
 
 		}
 	
