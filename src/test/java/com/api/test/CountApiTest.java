@@ -18,7 +18,7 @@ import static com.api.utils.ConfigManager2.*;
 
 import static io.restassured.RestAssured.*;
 
-public class CountAPITest {
+public class CountApiTest {
 
 	@Test
 	public void verifyCountApiResponse() throws IOException {

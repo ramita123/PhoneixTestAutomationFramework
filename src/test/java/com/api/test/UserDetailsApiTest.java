@@ -20,7 +20,7 @@ import io.restassured.http.Header;
 
 
 
-public class UserDetailsAPITest {
+public class UserDetailsApiTest {
 	
 	
 	@Test

@@ -32,7 +32,7 @@ public class MasterApiTest {
 		statusCode(200).time(lessThan(1000l)).and().body("message", equalTo("Success")).
 		body("data",notNullValue()).body("data",hasKey("mst_oem"))
 		.body("data",hasKey("mst_model"))
-		.body("data",hasKey("mst_oem")).body("$",hasKey("message")).body("data.mst_oem",equalTo(2)).
+		.body("data",hasKey("mst_oem")).body("$",hasKey("message")).body("data.mst_oem.size()",equalTo(2)).
 		body("data.mst_oem.id",Matchers.everyItem(notNullValue())).
 		body(JsonSchemaValidator.matchesJsonSchemaInClasspath("response-schema/masterApiResponseSchema.json"));
 		//In Rest Assured, this is a Groovy GPath expression
@@ -44,8 +44,6 @@ public class MasterApiTest {
 		given().
 		baseUri(getProperty("BASE_URI")).
 		contentType("").
-		and().
-		header("Authorization",getToken(Role.FD)).
 		when().post("/master").
 		then().log().all().
 		statusCode(401);

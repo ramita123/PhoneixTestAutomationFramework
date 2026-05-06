@@ -1,67 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="1" passed="0" failed="1" skipped="0">
+<testng-results ignored="0" total="2" passed="2" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2026-05-06T12:56:38 IST" name="Default suite" finished-at="2026-05-06T12:56:42 IST" duration-ms="3944">
+  <suite started-at="2026-05-06T15:16:02 IST" name="Default suite" finished-at="2026-05-06T15:16:05 IST" duration-ms="3773">
     <groups>
     </groups>
-    <test started-at="2026-05-06T12:56:38 IST" name="Default test" finished-at="2026-05-06T12:56:42 IST" duration-ms="3944">
+    <test started-at="2026-05-06T15:16:02 IST" name="Default test" finished-at="2026-05-06T15:16:05 IST" duration-ms="3773">
       <class name="com.api.test.MasterApiTest">
-        <test-method signature="masterApiTest()[pri:0, instance:com.api.test.MasterApiTest@128d2484]" started-at="2026-05-06T12:56:38 IST" name="masterApiTest" finished-at="2026-05-06T12:56:42 IST" duration-ms="3897" status="FAIL">
-          <exception class="java.lang.AssertionError">
-            <message>
-              <![CDATA[1 expectation failed.
-JSON path data.mst_oem doesn't match.
-Expected: <2>
-  Actual: <[{id=1, name=Google, code=GL, is_active=1, created_at=2021-10-26T08:24:17.000Z, modified_at=2021-10-26T08:24:17.000Z}, {id=2, name=Apple, code=APL, is_active=1, created_at=2021-10-26T08:24:17.000Z, modified_at=2021-10-26T08:24:17.000Z}]>
-]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[java.lang.AssertionError: 1 expectation failed.
-JSON path data.mst_oem doesn't match.
-Expected: <2>
-  Actual: <[{id=1, name=Google, code=GL, is_active=1, created_at=2021-10-26T08:24:17.000Z, modified_at=2021-10-26T08:24:17.000Z}, {id=2, name=Apple, code=APL, is_active=1, created_at=2021-10-26T08:24:17.000Z, modified_at=2021-10-26T08:24:17.000Z}]>
-
-at org.codehaus.groovy.vmplugin.v8.IndyInterface.fromCache(IndyInterface.java:344)
-at io.restassured.internal.ResponseSpecificationImpl$HamcrestAssertionClosure.validate(ResponseSpecificationImpl.groovy:516)
-at org.codehaus.groovy.vmplugin.v8.IndyInterface.fromCache(IndyInterface.java:344)
-at io.restassured.internal.ResponseSpecificationImpl.validateResponseIfRequired(ResponseSpecificationImpl.groovy:714)
-at org.codehaus.groovy.vmplugin.v8.IndyInterface.fromCache(IndyInterface.java:344)
-at io.restassured.internal.ResponseSpecificationImpl.body(ResponseSpecificationImpl.groovy:274)
-at org.codehaus.groovy.vmplugin.v8.IndyInterface.selectMethod(IndyInterface.java:373)
-at org.codehaus.groovy.vmplugin.v8.IndyInterface.fromCache(IndyInterface.java:344)
-at io.restassured.internal.ResponseSpecificationImpl.body(ResponseSpecificationImpl.groovy:121)
-at io.restassured.internal.ValidatableResponseOptionsImpl.body(ValidatableResponseOptionsImpl.java:244)
-at com.api.test.MasterApiTest.masterApiTest(MasterApiTest.java:35)
-at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
-at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:697)
-at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
-at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
-at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:1005)
-at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
-at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
-at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
-at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
-at org.testng.TestRunner.privateRun(TestRunner.java:744)
-at org.testng.TestRunner.run(TestRunner.java:616)
-at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
-at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
-at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
-at org.testng.SuiteRunner.run(SuiteRunner.java:312)
-at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
-at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
-at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
-at org.testng.TestNG.runSuites(TestNG.java:1112)
-at org.testng.TestNG.run(TestNG.java:1079)
-at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
-at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
-]]>
-            </full-stacktrace>
-          </exception> <!-- java.lang.AssertionError -->
+        <test-method signature="invalidTokenMasterApi()[pri:0, instance:com.api.test.MasterApiTest@7cc0cdad]" started-at="2026-05-06T15:16:02 IST" name="invalidTokenMasterApi" finished-at="2026-05-06T15:16:04 IST" duration-ms="2011" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- invalidTokenMasterApi -->
+        <test-method signature="masterApiTest()[pri:0, instance:com.api.test.MasterApiTest@7cc0cdad]" started-at="2026-05-06T15:16:04 IST" name="masterApiTest" finished-at="2026-05-06T15:16:05 IST" duration-ms="1716" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- masterApiTest -->
