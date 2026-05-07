@@ -18,10 +18,10 @@ on:
         - dev
        default: qa
        required: true
-     suiteXmlFiles:
-      description: "Testng xml file"
-      type: choice
-      options:
+      suiteXmlFiles:
+       description: "Testng xml file"
+       type: choice
+       options:
         - testng.xml
         - smoke.xml
         - regression.xml
