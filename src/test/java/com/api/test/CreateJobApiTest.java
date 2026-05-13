@@ -1,12 +1,18 @@
 package com.api.test;
 
-import static org.hamcrest.Matchers.*;
+import static com.api.utils.DateTimeUtility.getTimeWithDaysAgo;
+import static io.restassured.RestAssured.given;
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.hasKey;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.hamcrest.Matchers;
+import static org.hamcrest.Matchers.*;
+
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import com.api.constant.Model;
@@ -22,21 +28,14 @@ import com.api.request.model.Customer;
 import com.api.request.model.CustomerAdress;
 import com.api.request.model.CustomerProduct;
 import com.api.request.model.Problems;
-import com.api.utils.AuthTokenProvider;
-import com.api.utils.ConfigManager2;
-import static com.api.utils.DateTimeUtility.*;
-import com.api.utils.SpecUtil;
-
-import io.restassured.http.ContentType;
-import static io.restassured.module.jsv.JsonSchemaValidator.*;
-
-import static io.restassured.RestAssured.*;
+import static com.api.utils.SpecUtil.*;
 
 public class CreateJobApiTest {
 	
-	@Test
-	public void createJobApiTest() throws IOException {
-		
+	private CreateJobPayload createJobPayload;
+	
+	@BeforeMethod()
+	public void setUp(){
 		Customer  customer= new Customer("ramita", "sambyal", "8976546789", "", "ramitasambyal@gmail.com", "");
 		CustomerAdress customerAddress =new CustomerAdress("duplex", "duplex", "harsar", "duplex", "duplex", "176023", "india", "HP");
 		CustomerProduct customerProduct= new CustomerProduct(getTimeWithDaysAgo(10), "ime_8360378289", "1364565999783484", "122403999793951", getTimeWithDaysAgo(10), Product.NEXUS_2.getCode(), Model.NEXUS_2_BLUE.getCode());
@@ -44,13 +43,16 @@ public class CreateJobApiTest {
 		List<Problems> problemList=new ArrayList<>();
 		problemList.add(problesm);
 	
-		CreateJobPayload createJobPayload= new CreateJobPayload(ServiceLocation.SERVICE_LOCATION_A.getCode(), Platform.FRONTE_DESK.getCode(), Warranty.IN_WARRANTY.getCode(), OEM.GOOGLE.getCode(), customer, customerAddress, customerProduct, problemList);
+		createJobPayload= new CreateJobPayload(ServiceLocation.SERVICE_LOCATION_A.getCode(), Platform.FRONTE_DESK.getCode(), Warranty.IN_WARRANTY.getCode(), OEM.GOOGLE.getCode(), customer, customerAddress, customerProduct, problemList);
+	}
 	
+	@Test(description="verifying if create job api is able to create inwarranty job",groups= {"api","regression","smoke"})
+	public void createJobApiTest() throws IOException {
 		
-		given().spec(SpecUtil.requestSpecWithAuth(Role.FD, createJobPayload)).when().post("/job/create").then().spec(SpecUtil.responseSpec_OK()).
+		given().spec(requestSpecWithAuth(Role.FD, createJobPayload)).when().post("/job/create").then().spec(responseSpec_OK()).
 		body("message", equalTo("Job created successfully. ")).
 		body(matchesJsonSchemaInClasspath("response-schema/createJobResponseSchema.json")).
-		body("data.mst_service_location_id",equalTo(1)).body("data.job_number", Matchers.startsWith("JOB_"))
+		body("data.mst_service_location_id",equalTo(1)).body("data.job_number", startsWith("JOB_"))
 		.body("data",hasKey("id"));
 		
 	//	.body(Matchers.hasProperty("data.id"));
