@@ -9,7 +9,7 @@ import java.io.IOException;
 import org.testng.annotations.Test;
 
 import com.api.constant.Role;
-import com.api.utils.SpecUtil;
+import static com.api.utils.SpecUtil.*;
 
 import static com.api.utils.AuthTokenProvider.*;
 
@@ -23,11 +23,11 @@ import io.restassured.http.Header;
 public class UserDetailsApiTest {
 	
 	
-	@Test
+	@Test(description="verify user details response shown correctly and it belongs to the group ",groups= {"api","regression","smoke"})
 	public void userDetailsAPITest() throws IOException {
 		
-		given().spec(SpecUtil.requestSpecWithAuth(Role.FD)).
-		when().get("userdetails").then().spec(SpecUtil.responseSpec_OK())
+		given().spec(requestSpecWithAuth(Role.FD)).
+		when().get("userdetails").then().spec(responseSpec_OK())
 		.body("message",equalTo("Success")).body(matchesJsonSchemaInClasspath("response-schema/userDetailsSchema.json"));
 	}
 

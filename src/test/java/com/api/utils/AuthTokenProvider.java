@@ -12,7 +12,7 @@ import org.hamcrest.Matchers;
 import static com.api.constant.Role.*;
 
 import com.api.constant.Role;
-import com.api.pojo.UserCredentials;
+import com.api.request.model.UserCredentials;
 
 import io.restassured.http.ContentType;
 import io.restassured.module.jsv.JsonSchemaValidator;

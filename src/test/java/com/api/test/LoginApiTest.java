@@ -7,29 +7,39 @@ import static org.hamcrest.Matchers.*;
 import java.io.IOException;
 
 import org.hamcrest.Matchers;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import com.api.pojo.UserCredentials;
+import com.api.request.model.UserCredentials;
+
 import static com.api.utils.SpecUtil.*;
 
 import static com.api.utils.ConfigManager2.*;
 
 import io.restassured.http.ContentType;
-import io.restassured.module.jsv.JsonSchemaValidator;
+import static io.restassured.module.jsv.JsonSchemaValidator.*;
 
 public class LoginApiTest {
+	
+	private UserCredentials userCredentials;
+	
+	
+	@BeforeMethod(description="create the payload for login api")
+	public void setUp() {
+		 userCredentials = new UserCredentials("iamfd", "password");
+		// ConfigManager configManager= null;
+	}
 
-	@Test
+	@Test(description="verify login api is working for the user FD",groups= {"api","regression","smoke"})
 	public void loginApiTest() throws IOException {
 
-		UserCredentials userCredentials = new UserCredentials("iamfd", "password");
-		// ConfigManager configManager= null;
+		
 
 		given().spec(requestSpec(userCredentials)).
 		when().post("/login").
 		then().spec(responseSpec_OK())
 		.body("message", equalTo("Success"))
-		.body(JsonSchemaValidator.matchesJsonSchemaInClasspath("response-schema/loginResponseSchema.json"));
+		.body(matchesJsonSchemaInClasspath("response-schema/loginResponseSchema.json"));
 	}
 
 }
