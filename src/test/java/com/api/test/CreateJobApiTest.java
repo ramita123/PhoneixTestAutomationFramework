@@ -38,13 +38,14 @@ public class CreateJobApiTest {
 	public void setUp(){
 		Customer  customer= new Customer("ramita", "sambyal", "8976546789", "", "ramitasambyal@gmail.com", "");
 		CustomerAdress customerAddress =new CustomerAdress("duplex", "duplex", "harsar", "duplex", "duplex", "176023", "india", "HP");
-		CustomerProduct customerProduct= new CustomerProduct(getTimeWithDaysAgo(10), "ime_8360378289", "1364565999783484", "122403999793951", getTimeWithDaysAgo(10), Product.NEXUS_2.getCode(), Model.NEXUS_2_BLUE.getCode());
+		CustomerProduct customerProduct= new CustomerProduct(getTimeWithDaysAgo(10), "ime_8360378289", "136533344669783484", "121144599793951", getTimeWithDaysAgo(10), Product.NEXUS_2.getCode(), Model.NEXUS_2_BLUE.getCode());
 		Problems problesm=new Problems(Problem.OVERHEATING.getCode(),"overheatingIssue" );
 		List<Problems> problemList=new ArrayList<>();
 		problemList.add(problesm);
 	
 		createJobPayload= new CreateJobPayload(ServiceLocation.SERVICE_LOCATION_A.getCode(), Platform.FRONTE_DESK.getCode(), Warranty.IN_WARRANTY.getCode(), OEM.GOOGLE.getCode(), customer, customerAddress, customerProduct, problemList);
 	}
+	
 	
 	@Test(description="verifying if create job api is able to create inwarranty job",groups= {"api","regression","smoke"})
 	public void createJobApiTest() throws IOException {
