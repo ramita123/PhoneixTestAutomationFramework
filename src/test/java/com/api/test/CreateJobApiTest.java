@@ -38,7 +38,7 @@ public class CreateJobApiTest {
 	public void setUp(){
 		Customer  customer= new Customer("ramita", "sambyal", "8976546789", "", "ramitasambyal@gmail.com", "");
 		CustomerAdress customerAddress =new CustomerAdress("duplex", "duplex", "harsar", "duplex", "duplex", "176023", "india", "HP");
-		CustomerProduct customerProduct= new CustomerProduct(getTimeWithDaysAgo(10), "ime_8360378289", "1364565999783484", "122403999793951", getTimeWithDaysAgo(10), Product.NEXUS_2.getCode(), Model.NEXUS_2_BLUE.getCode());
+		CustomerProduct customerProduct= new CustomerProduct(getTimeWithDaysAgo(10), "ime_8360378289", "1365565999783484", "122403599793951", getTimeWithDaysAgo(10), Product.NEXUS_2.getCode(), Model.NEXUS_2_BLUE.getCode());
 		Problems problesm=new Problems(Problem.OVERHEATING.getCode(),"overheatingIssue" );
 		List<Problems> problemList=new ArrayList<>();
 		problemList.add(problesm);
