@@ -42,11 +42,12 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         cache: maven
+        
     - name: Default Values for execution 
       id: default
       run: |
-            echo "suiteXmlFiles=${{ github.event.inputs.suiteXmlFiles || 'testng.xml'}}" >> GITHUB_OUTPUT
-            echo "env=${{ github.event.inputs.env || 'qa'}}" >> GITHUB_OUTPUT
+            echo "suiteXmlFiles=${{ github.event.inputs.suiteXmlFiles || 'testng.xml'}}" >> $GITHUB_OUTPUT
+            echo "env=${{ github.event.inputs.env || 'qa'}}" >> $GITHUB_OUTPUT
             
     - name: Execute Test Automation Framework
       run: mvn test -Dsurefire.suiteXmlFiles=${{ steps.default.outputs.suiteXmlFiles }}  -Denv=${{ steps.default.outputs.env }}
