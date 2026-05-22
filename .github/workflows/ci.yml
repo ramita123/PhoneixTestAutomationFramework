@@ -5,7 +5,30 @@ on:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
-
+  schedule: #set the crone for midnight ist-utc
+    - cron: "10 6 * 11 *"
+  workflow_dispatch:
+    inputs:
+      env:
+       description: "environment"
+       type: choice
+       options:
+        - qa
+        - uat
+        - dev
+       default: qa
+       required: true
+      suiteXmlFiles:
+       description: "Testing XML file."
+       type: choice
+       options:
+        - testng.xml
+        - smoke.xml
+        - regression.xml
+       default: testng.xml
+       required: true
+    
+        
 jobs:
   test:
 
@@ -19,8 +42,22 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         cache: maven
+        
+    - name: Default Values for execution 
+      id: default
+      run: |
+            echo "suiteXmlFiles=${{ github.event.inputs.suiteXmlFiles || 'testng.xml'}}" >> $GITHUB_OUTPUT
+            echo "env=${{ github.event.inputs.env || 'qa'}}" >> $GITHUB_OUTPUT
+            
     - name: Execute Test Automation Framework
-      run: mvn test -Dsurefire.suiteXmlFiles=testng.xml
+      run: mvn test -Dsurefire.suiteXmlFiles=${{ steps.default.outputs.suiteXmlFiles }}  -Denv=${{ steps.default.outputs.env }}
 
+    - name: Upload build artifact
+      uses: actions/upload-artifact@v4
+      if:   always()
+      with:
+        name: Surefire Report
+        path: target/surefire-reports/
+        retention-days: 10
 
    
