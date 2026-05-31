@@ -1,4 +1,4 @@
-package com.demo.csv;
+package com.providers.api.bean;
 
 public class UserPojo {
 
