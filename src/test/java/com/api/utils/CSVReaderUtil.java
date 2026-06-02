@@ -3,13 +3,14 @@ package com.api.utils;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.Iterator;
 import java.util.List;
 
+import com.dataproviders.api.bean.UserBean;
 import com.opencsv.CSVReader;
 import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
 import com.opencsv.exceptions.CsvException;
-import com.providers.api.bean.UserPojo;
 
 public class CSVReaderUtil {
 
@@ -17,7 +18,7 @@ public class CSVReaderUtil {
 
 	}
 
-	public static void loadCSV(String pathOfCSVFile)  {
+	public static Iterator<UserBean> loadCSV(String pathOfCSVFile)  {
 
 		InputStream inputStream = Thread.currentThread().getContextClassLoader()
 				.getResourceAsStream(pathOfCSVFile);
@@ -25,12 +26,13 @@ public class CSVReaderUtil {
 
 		CSVReader csvReader = new CSVReader(inputStreamReader);
 
-		CsvToBean<UserPojo> csvToBeans = new CsvToBeanBuilder(csvReader)
-				.withType(UserPojo.class)
+		CsvToBean<UserBean> csvToBeans = new CsvToBeanBuilder(csvReader)
+				.withType(UserBean.class)
 				.withIgnoreEmptyLine(true).build();
 
-		List<UserPojo> userList = csvToBeans.parse();
-		System.out.println(userList);
+		List<UserBean> userList = csvToBeans.parse();
+		
+		return userList.iterator();
 	}
 
 }

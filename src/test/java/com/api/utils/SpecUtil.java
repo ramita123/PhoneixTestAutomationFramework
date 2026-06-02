@@ -37,7 +37,7 @@ public class SpecUtil {
 	
 	
 	//post-put-patch
-	public static RequestSpecification requestSpec(Object userCredentials) throws IOException {
+	public static RequestSpecification requestSpec(Object userCredentials)  {
 		
 		
 		RequestSpecification requestSpecification=	new RequestSpecBuilder().setBaseUri(getProperty("BASE_URI"))

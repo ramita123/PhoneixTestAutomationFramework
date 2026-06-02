@@ -61,7 +61,7 @@ public class ConfigManager2 {
 		}
 	}
 
-	public static String getProperty(String key) throws IOException {
+	public static String getProperty(String key)  {
 
 		return prop.getProperty(key);
 
