@@ -50,7 +50,7 @@
               <ul>
                 <li>
                   <a href="#" panel-name="test-xml-Default_suite" class="navigator-link ">
-                    <span>C:\Users\Ramita Sambyal\AppData\Local\Temp\testng-eclipse-1951617769\testng-customsuite.xml</span>
+                    <span>C:\Users\Ramita Sambyal\AppData\Local\Temp\testng-eclipse--724329108\testng-customsuite.xml</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
@@ -92,7 +92,7 @@
               <div class="suite-section-content">
                 <ul>
                   <li>
-                    <span class="method-stats">2 methods, 1 failed,   1 passed</span>
+                    <span class="method-stats">3 methods, 1 failed,   2 passed</span>
                   </li>
                   <li>
                     <span class="method-list-title failed">Failed methods</span>
@@ -103,7 +103,7 @@
                     <div class="method-list-content failed suite-Default_suite">
                       <span>
                         <img src="failed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Default_suite" title="com.api.test.datadriven.LoginApiDataDrivenTest" class="method navigator-link" hash-for-method="loginApiTest(UserPojo [username=ramita, password=1234])">loginApiTest(UserPojo [username=ramita, password=1234])</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-Default_suite" title="com.api.test.datadriven.CreateJobApiDataDrivenTest" class="method navigator-link" hash-for-method="createJobApiTest(CreateJobPayload[mst_service_location_id=0, mst_platform_id=2, mst_warrenty_status_id=1, mst_oem_id=...)">createJobApiTest(CreateJobPayload[mst_service_location_id=0, mst_platform_id=2, mst_warrenty_status_id=1, mst_oem_id=...)</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content failed suite-Default_suite -->
@@ -117,7 +117,12 @@
                     <div class="method-list-content passed suite-Default_suite">
                       <span>
                         <img src="passed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Default_suite" title="com.api.test.datadriven.LoginApiDataDrivenTest" class="method navigator-link" hash-for-method="loginApiTest(UserPojo [username=iamfd, password=password])">loginApiTest(UserPojo [username=iamfd, password=password])</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-Default_suite" title="com.api.test.datadriven.CreateJobApiDataDrivenTest" class="method navigator-link" hash-for-method="createJobApiTest(CreateJobPayload[mst_service_location_id=0, mst_platform_id=2, mst_warrenty_status_id=1, mst_oem_id=...)">createJobApiTest(CreateJobPayload[mst_service_location_id=0, mst_platform_id=2, mst_warrenty_status_id=1, mst_oem_id=...)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Default_suite" title="com.api.test.datadriven.CreateJobApiDataDrivenTest" class="method navigator-link" hash-for-method="createJobApiTest(CreateJobPayload[mst_service_location_id=0, mst_platform_id=2, mst_warrenty_status_id=1, mst_oem_id=...)">createJobApiTest(CreateJobPayload[mst_service_location_id=0, mst_platform_id=2, mst_warrenty_status_id=1, mst_oem_id=...)</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content passed suite-Default_suite -->
@@ -135,24 +140,25 @@
           <div class="suite-Default_suite-class-failed">
             <div class="main-panel-header rounded-window-top">
               <img src="failed.png"/>
-              <span class="class-name">com.api.test.datadriven.LoginApiDataDrivenTest</span>
+              <span class="class-name">com.api.test.datadriven.CreateJobApiDataDrivenTest</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="loginApiTest(UserPojo [username=ramita, password=1234])">
-                  </a> <!-- loginApiTest(UserPojo [username=ramita, password=1234]) -->
-                  <span class="method-name">loginApiTest</span>
-                  <span class="parameters">(UserPojo [username=ramita, password=1234])</span>
-                  <div class="stack-trace">java.lang.AssertionError: 1 expectation failed.
+                  <a name="createJobApiTest(CreateJobPayload[mst_service_location_id=0, mst_platform_id=2, mst_warrenty_status_id=1, mst_oem_id=...)">
+                  </a> <!-- createJobApiTest(CreateJobPayload[mst_service_location_id=0, mst_platform_id=2, mst_warrenty_status_id=1, mst_oem_id=...) -->
+                  <span class="method-name">createJobApiTest</span>
+                  <span class="parameters">(CreateJobPayload[mst_service_location_id=0, mst_platform_id=2, mst_warrenty_status_id=1, mst_oem_id=1, customer=Customer[first_name=Joshuah, last_name=Kozey, mobile_number=623-748-7965, mobile_number_alt=, email_id=Zetta.Botsford@yahoo.com, email_id_alt=], customer_address=CustomerAdress[flat_number=duplex, apartment_name=duplex, street_name=Village Harsar, landmark=duplex, area=duplex, pincode=176023, country=India, state=Himachal Pradesh], customer_product=CustomerProduct[dop=2026-03-14T18:30:00.000Z, serial_number=ime_8360378289, imei1=111113616855473, imei2=ime_8360378289, popurl=2026-03-14T18:30:00.000Z, product_id=1, mst_model_id=2], problems=[Problems[id=2, remark=battery laggs]]])</span>
+                  <div class="stack-trace">java.lang.AssertionError: 2 expectations failed.
 Expected status code &lt;200&gt; but was &lt;500&gt;.
 
+Expected response time was not a value less than &lt;1000L&gt; milliseconds, was 2162 milliseconds (2162 milliseconds).
 	at org.codehaus.groovy.vmplugin.v8.IndyInterface.fromCache(IndyInterface.java:344)
 	at io.restassured.internal.ResponseSpecificationImpl$HamcrestAssertionClosure.validate(ResponseSpecificationImpl.groovy:516)
 	at org.codehaus.groovy.vmplugin.v8.IndyInterface.fromCache(IndyInterface.java:344)
 	at io.restassured.internal.ResponseSpecificationImpl.validate(ResponseSpecificationImpl.groovy:105)
 	at io.restassured.internal.ValidatableResponseOptionsImpl.spec(ValidatableResponseOptionsImpl.java:288)
-	at com.api.test.datadriven.LoginApiDataDrivenTest.loginApiTest(LoginApiDataDrivenTest.java:35)
+	at com.api.test.datadriven.CreateJobApiDataDrivenTest.createJobApiTest(CreateJobApiDataDrivenTest.java:41)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
@@ -166,7 +172,7 @@ Expected status code &lt;200&gt; but was &lt;500&gt;.
 
 </div> <!-- stack-trace -->
                   <em>
-(verify login api is working for the user FD)                  </em>
+(verifying if create job api is able to create inwarranty job)                  </em>
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
@@ -174,17 +180,27 @@ Expected status code &lt;200&gt; but was &lt;500&gt;.
           <div class="suite-Default_suite-class-passed">
             <div class="main-panel-header rounded-window-top">
               <img src="passed.png"/>
-              <span class="class-name">com.api.test.datadriven.LoginApiDataDrivenTest</span>
+              <span class="class-name">com.api.test.datadriven.CreateJobApiDataDrivenTest</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="loginApiTest(UserPojo [username=iamfd, password=password])">
-                  </a> <!-- loginApiTest(UserPojo [username=iamfd, password=password]) -->
-                  <span class="method-name">loginApiTest</span>
-                  <span class="parameters">(UserPojo [username=iamfd, password=password])</span>
+                  <a name="createJobApiTest(CreateJobPayload[mst_service_location_id=0, mst_platform_id=2, mst_warrenty_status_id=1, mst_oem_id=...)">
+                  </a> <!-- createJobApiTest(CreateJobPayload[mst_service_location_id=0, mst_platform_id=2, mst_warrenty_status_id=1, mst_oem_id=...) -->
+                  <span class="method-name">createJobApiTest</span>
+                  <span class="parameters">(CreateJobPayload[mst_service_location_id=0, mst_platform_id=2, mst_warrenty_status_id=1, mst_oem_id=1, customer=Customer[first_name=Ramita, last_name=Sambyal, mobile_number=623-748-7965, mobile_number_alt=, email_id=Zetta.Botsford@yahoo.com, email_id_alt=], customer_address=CustomerAdress[flat_number=duplex, apartment_name=duplex, street_name=Village Harsar, landmark=duplex, area=duplex, pincode=176023, country=India, state=Himachal Pradesh], customer_product=CustomerProduct[dop=2026-03-14T18:30:00.000Z, serial_number=ime_8360378289, imei1=111113616855473, imei2=ime_8360378289, popurl=2026-03-14T18:30:00.000Z, product_id=1, mst_model_id=2], problems=[Problems[id=2, remark=battery laggs]]])</span>
                   <em>
-(verify login api is working for the user FD)                  </em>
+(verifying if create job api is able to create inwarranty job)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="createJobApiTest(CreateJobPayload[mst_service_location_id=0, mst_platform_id=2, mst_warrenty_status_id=1, mst_oem_id=...)">
+                  </a> <!-- createJobApiTest(CreateJobPayload[mst_service_location_id=0, mst_platform_id=2, mst_warrenty_status_id=1, mst_oem_id=...) -->
+                  <span class="method-name">createJobApiTest</span>
+                  <span class="parameters">(CreateJobPayload[mst_service_location_id=0, mst_platform_id=2, mst_warrenty_status_id=1, mst_oem_id=1, customer=Customer[first_name=Kajal, last_name=kill, mobile_number=623-748-7965, mobile_number_alt=, email_id=Zetta.Botsford@yahoo.com, email_id_alt=], customer_address=CustomerAdress[flat_number=duplex, apartment_name=duplex, street_name=Village Harsar, landmark=duplex, area=duplex, pincode=176023, country=India, state=Himachal Pradesh], customer_product=CustomerProduct[dop=2026-03-14T18:30:00.000Z, serial_number=ime_8360378289, imei1=111113616855473, imei2=ime_8360378289, popurl=2026-03-14T18:30:00.000Z, product_id=1, mst_model_id=2], problems=[Problems[id=2, remark=battery laggs]]])</span>
+                  <em>
+(verifying if create job api is able to create inwarranty job)                  </em>
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
@@ -192,7 +208,7 @@ Expected status code &lt;200&gt; but was &lt;500&gt;.
         </div> <!-- panel Default_suite -->
         <div panel-name="test-xml-Default_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">C:\Users\Ramita Sambyal\AppData\Local\Temp\testng-eclipse-1951617769\testng-customsuite.xml</span>
+            <span class="header-content">C:\Users\Ramita Sambyal\AppData\Local\Temp\testng-eclipse--724329108\testng-customsuite.xml</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <pre>
@@ -201,7 +217,7 @@ Expected status code &lt;200&gt; but was &lt;500&gt;.
 &lt;suite name=&quot;Default suite&quot; guice-stage=&quot;DEVELOPMENT&quot;&gt;
   &lt;test thread-count=&quot;5&quot; name=&quot;Default test&quot; verbose=&quot;2&quot;&gt;
     &lt;classes&gt;
-      &lt;class name=&quot;com.api.test.datadriven.LoginApiDataDrivenTest&quot;/&gt;
+      &lt;class name=&quot;com.api.test.datadriven.CreateJobApiDataDrivenTest&quot;/&gt;
     &lt;/classes&gt;
   &lt;/test&gt; &lt;!-- Default test --&gt;
 &lt;/suite&gt; &lt;!-- Default suite --&gt;
@@ -229,15 +245,7 @@ Expected status code &lt;200&gt; but was &lt;500&gt;.
               <span class="test-group-name">api</span>
               <br/>
               <div class="method-in-group">
-                <span class="method-in-group-name">loginApiTest</span>
-                <br/>
-              </div> <!-- method-in-group -->
-            </div> <!-- test-group -->
-            <div class="test-group">
-              <span class="test-group-name">dataDriven</span>
-              <br/>
-              <div class="method-in-group">
-                <span class="method-in-group-name">loginApiTest</span>
+                <span class="method-in-group-name">createJobApiTest</span>
                 <br/>
               </div> <!-- method-in-group -->
             </div> <!-- test-group -->
@@ -245,7 +253,15 @@ Expected status code &lt;200&gt; but was &lt;500&gt;.
               <span class="test-group-name">regression</span>
               <br/>
               <div class="method-in-group">
-                <span class="method-in-group-name">loginApiTest</span>
+                <span class="method-in-group-name">createJobApiTest</span>
+                <br/>
+              </div> <!-- method-in-group -->
+            </div> <!-- test-group -->
+            <div class="test-group">
+              <span class="test-group-name">smoke</span>
+              <br/>
+              <div class="method-in-group">
+                <span class="method-in-group-name">createJobApiTest</span>
                 <br/>
               </div> <!-- method-in-group -->
             </div> <!-- test-group -->
@@ -265,20 +281,24 @@ data.addColumn('number', 'Number');
 data.addColumn('string', 'Method');
 data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
-data.addRows(2);
+data.addRows(3);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'loginApiTest')
-data.setCell(0, 2, 'com.api.test.datadriven.LoginApiDataDrivenTest')
-data.setCell(0, 3, 2903);
+data.setCell(0, 1, 'createJobApiTest')
+data.setCell(0, 2, 'com.api.test.datadriven.CreateJobApiDataDrivenTest')
+data.setCell(0, 3, 6456);
 data.setCell(1, 0, 1)
-data.setCell(1, 1, 'loginApiTest')
-data.setCell(1, 2, 'com.api.test.datadriven.LoginApiDataDrivenTest')
-data.setCell(1, 3, 2055);
+data.setCell(1, 1, 'createJobApiTest')
+data.setCell(1, 2, 'com.api.test.datadriven.CreateJobApiDataDrivenTest')
+data.setCell(1, 3, 5346);
+data.setCell(2, 0, 2)
+data.setCell(2, 1, 'createJobApiTest')
+data.setCell(2, 2, 'com.api.test.datadriven.CreateJobApiDataDrivenTest')
+data.setCell(2, 3, 5345);
 window.suiteTableData['Default_suite']= { tableData: data, tableDiv: 'times-div-Default_suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 4 seconds</span>
+              <span class="suite-total-time">Total running time: 17 seconds</span>
               <div id="times-div-Default_suite">
               </div> <!-- times-div-Default_suite -->
             </div> <!-- times-div -->
@@ -304,16 +324,20 @@ return data;
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="chronological-class">
-              <div class="chronological-class-name">com.api.test.datadriven.LoginApiDataDrivenTest</div> <!-- chronological-class-name -->
+              <div class="chronological-class-name">com.api.test.datadriven.CreateJobApiDataDrivenTest</div> <!-- chronological-class-name -->
               <div class="test-method">
-                <span class="method-name">loginApiTest(UserPojo [username=iamfd, password=password])</span>
+                <span class="method-name">createJobApiTest(CreateJobPayload[mst_service_location_id=0, mst_platform_id=2, mst_warrenty_status_id=1, mst_oem_id=...)</span>
                 <span class="method-start">0 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <img src="failed.png">
                 </img>
-                <span class="method-name">loginApiTest(UserPojo [username=ramita, password=1234])</span>
-                <span class="method-start">0 ms</span>
+                <span class="method-name">createJobApiTest(CreateJobPayload[mst_service_location_id=0, mst_platform_id=2, mst_warrenty_status_id=1, mst_oem_id=...)</span>
+                <span class="method-start">1 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">createJobApiTest(CreateJobPayload[mst_service_location_id=0, mst_platform_id=2, mst_warrenty_status_id=1, mst_oem_id=...)</span>
+                <span class="method-start">1 ms</span>
               </div> <!-- test-method -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->

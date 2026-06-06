@@ -55,11 +55,11 @@ function toggleAllBoxes() {
 <body>
 <h2 align='center'>Default test</h2><table border='1' align="center">
 <tr>
-<td>Tests passed/Failed/Skipped:</td><td>1/1/0</td>
+<td>Tests passed/Failed/Skipped:</td><td>2/1/0</td>
 </tr><tr>
-<td>Started on:</td><td>Tue Jun 02 23:36:40 IST 2026</td>
+<td>Started on:</td><td>Fri Jun 05 14:13:13 IST 2026</td>
 </tr>
-<tr><td>Total time:</td><td>3 seconds (3046 ms)</td>
+<tr><td>Total time:</td><td>6 seconds (6817 ms)</td>
 </tr><tr>
 <td>Included groups:</td><td></td>
 </tr><tr>
@@ -76,16 +76,17 @@ function toggleAllBoxes() {
 <td><b>Instance</b></td>
 </tr>
 <tr>
-<td title='com.api.test.datadriven.LoginApiDataDrivenTest.loginApiTest()'><b>loginApiTest</b><br>Test class: com.api.test.datadriven.LoginApiDataDrivenTest<br>Test method: verify login api is working for the user FD<br>Parameters: UserPojo [username=ramita, password=1234]</td>
-<td><div><pre>java.lang.AssertionError: 1 expectation failed.
+<td title='com.api.test.datadriven.CreateJobApiDataDrivenTest.createJobApiTest()'><b>createJobApiTest</b><br>Test class: com.api.test.datadriven.CreateJobApiDataDrivenTest<br>Test method: verifying if create job api is able to create inwarranty job<br>Parameters: CreateJobPayload[mst_service_location_id=0, mst_platform_id=2, mst_warrenty_status_id=1, mst_oem_id=1, customer=Customer[first_name=Joshuah, last_name=Kozey, mobile_number=623-748-7965, mobile_number_alt=, email_id=Zetta.Botsford@yahoo.com, email_id_alt=], customer_address=CustomerAdress[flat_number=duplex, apartment_name=duplex, street_name=Village Harsar, landmark=duplex, area=duplex, pincode=176023, country=India, state=Himachal Pradesh], customer_product=CustomerProduct[dop=2026-03-14T18:30:00.000Z, serial_number=ime_8360378289, imei1=111113616855473, imei2=ime_8360378289, popurl=2026-03-14T18:30:00.000Z, product_id=1, mst_model_id=2], problems=[Problems[id=2, remark=battery laggs]]]</td>
+<td><div><pre>java.lang.AssertionError: 2 expectations failed.
 Expected status code &lt;200&gt; but was &lt;500&gt;.
 
+Expected response time was not a value less than &lt;1000L&gt; milliseconds, was 2162 milliseconds (2162 milliseconds).
 	at org.codehaus.groovy.vmplugin.v8.IndyInterface.fromCache(IndyInterface.java:344)
 	at io.restassured.internal.ResponseSpecificationImpl$HamcrestAssertionClosure.validate(ResponseSpecificationImpl.groovy:516)
 	at org.codehaus.groovy.vmplugin.v8.IndyInterface.fromCache(IndyInterface.java:344)
 	at io.restassured.internal.ResponseSpecificationImpl.validate(ResponseSpecificationImpl.groovy:105)
 	at io.restassured.internal.ValidatableResponseOptionsImpl.spec(ValidatableResponseOptionsImpl.java:288)
-	at com.api.test.datadriven.LoginApiDataDrivenTest.loginApiTest(LoginApiDataDrivenTest.java:35)
+	at com.api.test.datadriven.CreateJobApiDataDrivenTest.createJobApiTest(CreateJobApiDataDrivenTest.java:41)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
@@ -96,16 +97,17 @@ Expected status code &lt;200&gt; but was &lt;500&gt;.
 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
 	at java.base/java.lang.Thread.run(Thread.java:1575)
-</pre></div><a href='#' onClick='toggleBox("stack-trace1091757893", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
-<div class='stack-trace' id='stack-trace1091757893'><pre>java.lang.AssertionError: 1 expectation failed.
+</pre></div><a href='#' onClick='toggleBox("stack-trace107788367", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace107788367'><pre>java.lang.AssertionError: 2 expectations failed.
 Expected status code &lt;200&gt; but was &lt;500&gt;.
 
+Expected response time was not a value less than &lt;1000L&gt; milliseconds, was 2162 milliseconds (2162 milliseconds).
 	at org.codehaus.groovy.vmplugin.v8.IndyInterface.fromCache(IndyInterface.java:344)
 	at io.restassured.internal.ResponseSpecificationImpl$HamcrestAssertionClosure.validate(ResponseSpecificationImpl.groovy:516)
 	at org.codehaus.groovy.vmplugin.v8.IndyInterface.fromCache(IndyInterface.java:344)
 	at io.restassured.internal.ResponseSpecificationImpl.validate(ResponseSpecificationImpl.groovy:105)
 	at io.restassured.internal.ValidatableResponseOptionsImpl.spec(ValidatableResponseOptionsImpl.java:288)
-	at com.api.test.datadriven.LoginApiDataDrivenTest.loginApiTest(LoginApiDataDrivenTest.java:35)
+	at com.api.test.datadriven.CreateJobApiDataDrivenTest.createJobApiTest(CreateJobApiDataDrivenTest.java:41)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
@@ -117,8 +119,8 @@ Expected status code &lt;200&gt; but was &lt;500&gt;.
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
 	at java.base/java.lang.Thread.run(Thread.java:1575)
 </pre></div></td>
-<td>2</td>
-<td>com.api.test.datadriven.LoginApiDataDrivenTest@77c2494c</td></tr>
+<td>6</td>
+<td>com.api.test.datadriven.CreateJobApiDataDrivenTest@f5958c9</td></tr>
 </table><p>
 <table width='100%' border='1' class='invocation-passed'>
 <tr><td colspan='4' align='center'><b>PASSED TESTS</b></td></tr>
@@ -129,10 +131,15 @@ Expected status code &lt;200&gt; but was &lt;500&gt;.
 <td><b>Instance</b></td>
 </tr>
 <tr>
-<td title='com.api.test.datadriven.LoginApiDataDrivenTest.loginApiTest()'><b>loginApiTest</b><br>Test class: com.api.test.datadriven.LoginApiDataDrivenTest<br>Test method: verify login api is working for the user FD<br>Parameters: UserPojo [username=iamfd, password=password]</td>
+<td title='com.api.test.datadriven.CreateJobApiDataDrivenTest.createJobApiTest()'><b>createJobApiTest</b><br>Test class: com.api.test.datadriven.CreateJobApiDataDrivenTest<br>Test method: verifying if create job api is able to create inwarranty job<br>Parameters: CreateJobPayload[mst_service_location_id=0, mst_platform_id=2, mst_warrenty_status_id=1, mst_oem_id=1, customer=Customer[first_name=Ramita, last_name=Sambyal, mobile_number=623-748-7965, mobile_number_alt=, email_id=Zetta.Botsford@yahoo.com, email_id_alt=], customer_address=CustomerAdress[flat_number=duplex, apartment_name=duplex, street_name=Village Harsar, landmark=duplex, area=duplex, pincode=176023, country=India, state=Himachal Pradesh], customer_product=CustomerProduct[dop=2026-03-14T18:30:00.000Z, serial_number=ime_8360378289, imei1=111113616855473, imei2=ime_8360378289, popurl=2026-03-14T18:30:00.000Z, product_id=1, mst_model_id=2], problems=[Problems[id=2, remark=battery laggs]]]</td>
 <td></td>
-<td>2</td>
-<td>com.api.test.datadriven.LoginApiDataDrivenTest@77c2494c</td></tr>
+<td>5</td>
+<td>com.api.test.datadriven.CreateJobApiDataDrivenTest@f5958c9</td></tr>
+<tr>
+<td title='com.api.test.datadriven.CreateJobApiDataDrivenTest.createJobApiTest()'><b>createJobApiTest</b><br>Test class: com.api.test.datadriven.CreateJobApiDataDrivenTest<br>Test method: verifying if create job api is able to create inwarranty job<br>Parameters: CreateJobPayload[mst_service_location_id=0, mst_platform_id=2, mst_warrenty_status_id=1, mst_oem_id=1, customer=Customer[first_name=Kajal, last_name=kill, mobile_number=623-748-7965, mobile_number_alt=, email_id=Zetta.Botsford@yahoo.com, email_id_alt=], customer_address=CustomerAdress[flat_number=duplex, apartment_name=duplex, street_name=Village Harsar, landmark=duplex, area=duplex, pincode=176023, country=India, state=Himachal Pradesh], customer_product=CustomerProduct[dop=2026-03-14T18:30:00.000Z, serial_number=ime_8360378289, imei1=111113616855473, imei2=ime_8360378289, popurl=2026-03-14T18:30:00.000Z, product_id=1, mst_model_id=2], problems=[Problems[id=2, remark=battery laggs]]]</td>
+<td></td>
+<td>5</td>
+<td>com.api.test.datadriven.CreateJobApiDataDrivenTest@f5958c9</td></tr>
 </table><p>
 </body>
 </html>
