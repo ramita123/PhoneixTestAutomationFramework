@@ -43,7 +43,7 @@ public class AuthTokenProvider {
 			// ConfigManager configManager= null;
 
 		}
-		else if(role==FD) {
+		else if(role==ENG) {
 			 userCredentials = new UserCredentials("iameng", "password");
 			// ConfigManager configManager= null;
 
