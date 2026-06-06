@@ -31,51 +31,19 @@ import com.api.request.model.CustomerAdress;
 import com.api.request.model.CustomerProduct;
 import com.api.request.model.Problems;
 import com.api.utils.DateTimeUtility;
+import static com.api.utils.FakerDataGenerator.*;
 import com.github.javafaker.Faker;
 
 import static com.api.utils.SpecUtil.*;
 
-public class CreateJobApiTest2 {
+public class CreateJobApiTestWithFakeData {
 	
-	private CreateJobPayload createJobPayload;
-	private static final String COUNTRY="India";
-	
-	@BeforeMethod()
-	public void setUp(){
-
-		Faker faker= new Faker(new Locale("en-IND"));
-		
-		
-		Customer customer= new Customer(faker.name().firstName(), faker.name().lastName(), faker.numerify("83########"), faker.numerify("83########"), faker.internet().emailAddress(), faker.internet().emailAddress());
-		System.out.println(customer);
-		
-		CustomerAdress customerAddress= new CustomerAdress(faker.numerify("###"), faker.address().streetName(), faker.address().streetName(),faker.address().streetName() , faker.address().streetName(), faker.numerify("#####"), 
-				COUNTRY, faker.address().state());
-		System.out.println(customerAddress);
-		
-		
-		CustomerProduct customerProduct= new CustomerProduct(DateTimeUtility.getTimeWithDaysAgo(10), faker.numerify("###############"), faker.numerify("###############"),faker.numerify("###############"),faker.internet().url(), 1, 2);
-		System.out.println(customerProduct);
-		
-		Random random= new Random();
-		int id=random.nextInt(26)+1;
-		
-		System.out.println(id);
-		
-		Problems problems= new Problems(id, faker.lorem().sentence(5));
-		System.out.println(problems);
-		
-		List<Problems> problemsList= new ArrayList<>();
-		problemsList.add(problems);
-		
-		 createJobPayload = new CreateJobPayload(0, 2, 1, 1, customer, customerAddress, customerProduct, problemsList);
-	}
 	
 	
 	@Test(description="verifying if create job api is able to create inwarranty job",groups= {"api","regression","smoke"})
 	public void createJobApiTest() throws IOException {
 		
-		given().spec(requestSpecWithAuth(Role.FD, createJobPayload)).when().post("/job/create").then().spec(responseSpec_OK()).
+		given().spec(requestSpecWithAuth(Role.FD, generateFakeCreateJobData())).when().post("/job/create").then().spec(responseSpec_OK()).
 		body("message", equalTo("Job created successfully. ")).
 		body(matchesJsonSchemaInClasspath("response-schema/createJobResponseSchema.json")).
 		body("data.mst_service_location_id",equalTo(1)).body("data.job_number", startsWith("JOB_"))
