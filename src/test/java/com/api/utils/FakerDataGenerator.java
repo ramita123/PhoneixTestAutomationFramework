@@ -26,11 +26,16 @@ public class FakerDataGenerator {
 	private FakerDataGenerator() {
 	};
 
-	
 	private static final String COUNTRY = "India";
 	private static Faker faker = new Faker(new Locale("en-IND"));
 	private static Random random = new Random();
-	
+
+	private final static int[] validProblmesId = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 15, 16, 17, 19, 20, 22, 24,
+			26, 27, 28, 29 };
+
+	private static void validProblemIds() {
+
+	}
 
 	public static CreateJobPayload generateFakeCreateJobData() {
 		Customer customer = generateFakeCustomerData();
@@ -41,29 +46,31 @@ public class FakerDataGenerator {
 
 		List<Problems> problemsList = generateFakeProblemsListData();
 
-		 CreateJobPayload	createJobPayload = new CreateJobPayload(ServiceLocation.SERVICE_LOCATION_A.getCode(), Platform.FRONTE_DESK.getCode(), Warranty.IN_WARRANTY.getCode(), OEM.GOOGLE.getCode(), customer, customerAddress, customerProduct, problemsList);
-		 return createJobPayload;
+		CreateJobPayload createJobPayload = new CreateJobPayload(ServiceLocation.SERVICE_LOCATION_A.getCode(),
+				Platform.FRONTE_DESK.getCode(), Warranty.IN_WARRANTY.getCode(), OEM.GOOGLE.getCode(), customer,
+				customerAddress, customerProduct, problemsList);
+		return createJobPayload;
 	}
-	
+
 	public static Iterator<CreateJobPayload> generateFakeCreateJobData(int count) {
-		
-		List<CreateJobPayload> payloadList= new ArrayList<>();
-		for(int i=1;i<=count;i++) {
-		Customer customer = generateFakeCustomerData();
 
-		CustomerAdress customerAddress = generateFakeCustomerAddressData();
+		List<CreateJobPayload> payloadList = new ArrayList<>();
+		for (int i = 1; i <= count; i++) {
+			Customer customer = generateFakeCustomerData();
 
-		CustomerProduct customerProduct = generateFakeCustomerProductData();
+			CustomerAdress customerAddress = generateFakeCustomerAddressData();
 
-		List<Problems> problemsList = generateFakeProblemsListData();
+			CustomerProduct customerProduct = generateFakeCustomerProductData();
 
-		 CreateJobPayload	createJobPayload = new CreateJobPayload(ServiceLocation.SERVICE_LOCATION_A.getCode(), Platform.FRONTE_DESK.getCode(), Warranty.IN_WARRANTY.getCode(), OEM.GOOGLE.getCode(), customer, customerAddress, customerProduct, problemsList);
-		 payloadList.add(createJobPayload);
+			List<Problems> problemsList = generateFakeProblemsListData();
+
+			CreateJobPayload createJobPayload = new CreateJobPayload(ServiceLocation.SERVICE_LOCATION_A.getCode(),
+					Platform.FRONTE_DESK.getCode(), Warranty.IN_WARRANTY.getCode(), OEM.GOOGLE.getCode(), customer,
+					customerAddress, customerProduct, problemsList);
+			payloadList.add(createJobPayload);
 		}
-		 return payloadList.iterator();
+		return payloadList.iterator();
 	}
-	
-	
 
 	private static Customer generateFakeCustomerData() {
 
@@ -83,17 +90,16 @@ public class FakerDataGenerator {
 
 	private static CustomerProduct generateFakeCustomerProductData() {
 		return new CustomerProduct(DateTimeUtility.getTimeWithDaysAgo(10), faker.numerify("###############"),
-				faker.numerify("###############"), faker.numerify("###############"), faker.internet().url(), Product.NEXUS_2.getCode(), Model.NEXUS_2_BLUE.getCode());
+				faker.numerify("###############"), faker.numerify("###############"), faker.internet().url(),
+				Product.NEXUS_2.getCode(), Model.NEXUS_2_BLUE.getCode());
 
 	}
 
 	private static List<Problems> generateFakeProblemsListData() {
-		
-		int id = random.nextInt(26) + 1;
 
-		System.out.println(id);
+		int randomIndex = random.nextInt(validProblmesId.length);
 
-		Problems problems = new Problems(id, faker.lorem().sentence(5));
+		Problems problems = new Problems(validProblmesId[randomIndex], faker.lorem().sentence(5));
 		System.out.println(problems);
 
 		List<Problems> problemsList = new ArrayList<>();
