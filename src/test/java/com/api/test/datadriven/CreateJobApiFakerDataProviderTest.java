@@ -40,7 +40,7 @@ public class CreateJobApiFakerDataProviderTest {
 	
 	
 	
-	@Test(description="verifying if create job api is able to create inwarranty job",groups= {"api","regression","smoke"},
+	@Test(description="verifying if create job api is able to create inwarranty job",groups= {"api","regression","smoke","faker"},
 			dataProviderClass=com.dataproviders.DataProviderUtils.class,dataProvider="CreateJobApiFakeDataProvider")
 	public void createJobApiTest(CreateJobPayload createJobPayload) throws IOException {
 		
