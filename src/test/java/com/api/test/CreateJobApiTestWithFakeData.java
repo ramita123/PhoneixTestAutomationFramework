@@ -1,4 +1,4 @@
-package com.api.test.datadriven;
+package com.api.test;
 
 import static com.api.utils.DateTimeUtility.getTimeWithDaysAgo;
 import static io.restassured.RestAssured.given;
@@ -9,6 +9,8 @@ import static org.hamcrest.Matchers.hasKey;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+import java.util.Random;
 
 import static org.hamcrest.Matchers.*;
 
@@ -28,17 +30,20 @@ import com.api.request.model.Customer;
 import com.api.request.model.CustomerAdress;
 import com.api.request.model.CustomerProduct;
 import com.api.request.model.Problems;
+import com.api.utils.DateTimeUtility;
+import static com.api.utils.FakerDataGenerator.*;
+import com.github.javafaker.Faker;
+
 import static com.api.utils.SpecUtil.*;
 
-public class CreateJobApiDataDrivenTest {
+public class CreateJobApiTestWithFakeData {
 	
-
 	
-	@Test(description="verifying if create job api is able to create inwarranty job",groups= {"api","regression","smoke","csv"},
-			dataProviderClass=com.dataproviders.DataProviderUtils.class, dataProvider="CreateJobApiDataProvider")
-	public void createJobApiTest(CreateJobPayload createJobPayload) throws IOException {
+	
+	@Test(description="verifying if create job api is able to create inwarranty job",groups= {"api","regression","smoke"})
+	public void createJobApiTest() throws IOException {
 		
-		given().spec(requestSpecWithAuth(Role.FD, createJobPayload)).when().post("/job/create").then().spec(responseSpec_OK()).
+		given().spec(requestSpecWithAuth(Role.FD, generateFakeCreateJobData())).when().post("/job/create").then().spec(responseSpec_OK()).
 		body("message", equalTo("Job created successfully. ")).
 		body(matchesJsonSchemaInClasspath("response-schema/createJobResponseSchema.json")).
 		body("data.mst_service_location_id",equalTo(1)).body("data.job_number", startsWith("JOB_"))
