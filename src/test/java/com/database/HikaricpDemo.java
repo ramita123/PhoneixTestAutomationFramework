@@ -19,10 +19,13 @@ public class HikaricpDemo {
 
 		
 	HikariConfig hikariConfig=	new HikariConfig();
+
 	
 	hikariConfig.setJdbcUrl(DB_URL);
 	hikariConfig.setUsername(DB_USERNAME);
 	hikariConfig.setPassword(DB_PASSWORD);
+	
+	hikariConfig.setMaximumPoolSize(0);
 	hikariConfig.setMinimumIdle(0);
 	hikariConfig.setConnectionTimeout(10000);
 	hikariConfig.setIdleTimeout(0);
