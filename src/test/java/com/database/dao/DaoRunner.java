@@ -9,12 +9,9 @@ public class DaoRunner {
 
 	public static void main(String[] args) throws SQLException {
 		// TODO Auto-generated method stub
-		CustomerDBModel customerDBData=CustomerDao.getCustomerInfo();;
-		System.out.println(customerDBData.getFirst_name());
+		CustomerProductDao.getCustomerProduct(336332);
 		
-		Customer  customer= new Customer("ramita", "sambyal", "8976546789", "", "ramitasambyal@gmail.com", "");
-		
-		System.out.println(customer.first_name());
+		//System.out.println(customer.first_name());
 
 
 	}

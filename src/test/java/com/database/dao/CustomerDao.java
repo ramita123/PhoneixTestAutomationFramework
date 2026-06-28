@@ -1,6 +1,7 @@
 package com.database.dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -11,25 +12,36 @@ import com.database.model.CustomerDBModel;
 public class CustomerDao {
 	// executing the sql query which will give the customer table details.
 
-	private static final String CUSTOMER_DETAILS_QUERY = """
+	private static final String CUSTOMER_DETAIL_QUERY = """
 
-					SELECT * from tr_customer where id=335503
+					SELECT * from tr_customer where id=?
 			""";
 	
-	
-	
-	public static CustomerDBModel getCustomerInfo() throws SQLException {
-		Connection conn=DatabaseManager.getConnection();
-		Statement statement=	conn.createStatement();
-		ResultSet resultSet=statement.executeQuery(CUSTOMER_DETAILS_QUERY);
+	private CustomerDao() {};
+
+	public static CustomerDBModel getCustomerInfo(int customerId)  {
+		Connection conn;
 		CustomerDBModel customerDBModel = null;
-		while(resultSet.next()) {
+		try {
+			conn = DatabaseManager.getConnection();
+		
+		PreparedStatement preparedStatement = conn.prepareStatement(CUSTOMER_DETAIL_QUERY);
+		preparedStatement.setInt(1, customerId);
+
+		ResultSet resultSet = preparedStatement.executeQuery();
+	
+		while (resultSet.next()) {
 			System.out.println(resultSet.getString("first_name"));
 			System.out.println(resultSet.getString("email_id"));
-			 customerDBModel= new CustomerDBModel(resultSet.getString("first_name"), resultSet.getString("last_name"), resultSet.getString("mobile_number"), resultSet.getString("mobile_number_alt"), resultSet.getString("email_id"), resultSet.getString("email_id_alt"));
+			customerDBModel = new CustomerDBModel(resultSet.getInt("id"),resultSet.getString("first_name"), resultSet.getString("last_name"),
+					resultSet.getString("mobile_number"), resultSet.getString("mobile_number_alt"),
+					resultSet.getString("email_id"), resultSet.getString("email_id_alt"),resultSet.getInt("tr_customer_address_id"));
 
 		}
-		
+		}catch(SQLException e) {
+			throw new RuntimeException();
+		}
+
 		return customerDBModel;
 	}
 
