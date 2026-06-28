@@ -2,7 +2,7 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2026-06-28T17:04:06 IST" name="Default suite" finished-at="2026-06-28T17:04:13 IST" duration-ms="6381">
+  <suite started-at="2026-06-28T17:46:37 IST" name="Default suite" finished-at="2026-06-28T17:46:45 IST" duration-ms="8141">
     <groups>
       <group name="regression">
         <method signature="CreateJobApiTestWithFakeData.createJobApiTest()[pri:0, instance:com.api.test.CreateJobApiTestWithFakeData@4b2bac3f]" name="createJobApiTest" class="com.api.test.CreateJobApiTestWithFakeData"/>
@@ -14,13 +14,13 @@
         <method signature="CreateJobApiTestWithFakeData.createJobApiTest()[pri:0, instance:com.api.test.CreateJobApiTestWithFakeData@4b2bac3f]" name="createJobApiTest" class="com.api.test.CreateJobApiTestWithFakeData"/>
       </group> <!-- api -->
     </groups>
-    <test started-at="2026-06-28T17:04:06 IST" name="Default test" finished-at="2026-06-28T17:04:13 IST" duration-ms="6381">
+    <test started-at="2026-06-28T17:46:37 IST" name="Default test" finished-at="2026-06-28T17:46:45 IST" duration-ms="8141">
       <class name="com.api.test.CreateJobApiTestWithFakeData">
-        <test-method is-config="true" signature="setUp()[pri:0, instance:com.api.test.CreateJobApiTestWithFakeData@4b2bac3f]" started-at="2026-06-28T17:04:06 IST" name="setUp" finished-at="2026-06-28T17:04:07 IST" duration-ms="168" status="PASS">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:com.api.test.CreateJobApiTestWithFakeData@4b2bac3f]" started-at="2026-06-28T17:46:37 IST" name="setUp" finished-at="2026-06-28T17:46:37 IST" duration-ms="178" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method signature="createJobApiTest()[pri:0, instance:com.api.test.CreateJobApiTestWithFakeData@4b2bac3f]" started-at="2026-06-28T17:04:07 IST" name="createJobApiTest" description="verifying if create job api is able to create inwarranty job" finished-at="2026-06-28T17:04:13 IST" duration-ms="6174" status="PASS">
+        <test-method signature="createJobApiTest()[pri:0, instance:com.api.test.CreateJobApiTestWithFakeData@4b2bac3f]" started-at="2026-06-28T17:46:37 IST" name="createJobApiTest" description="verifying if create job api is able to create inwarranty job" finished-at="2026-06-28T17:46:45 IST" duration-ms="7918" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- createJobApiTest -->
