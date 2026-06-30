@@ -9,9 +9,9 @@ public class DaoRunner {
 
 	public static void main(String[] args) throws SQLException {
 		// TODO Auto-generated method stub
-		CustomerProductDao.getCustomerProduct(336332);
+	System.out.println(	MapJobProblemDao.getProblemDetails(338666));
 		
-		//System.out.println(customer.first_name());
+	//	System.out.println(customer.first_name());
 
 
 	}

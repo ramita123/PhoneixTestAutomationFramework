@@ -36,9 +36,11 @@ import com.api.utils.DateTimeUtility;
 import com.database.dao.CustomerAddressDao;
 import com.database.dao.CustomerDao;
 import com.database.dao.CustomerProductDao;
+import com.database.dao.MapJobProblemDao;
 import com.database.model.CustomerAddressDBModel;
 import com.database.model.CustomerDBModel;
 import com.database.model.CustomerProductDBModel;
+import com.database.model.MapJobProblemDBModel;
 
 import static com.api.utils.FakerDataGenerator.*;
 import com.github.javafaker.Faker;
@@ -98,13 +100,20 @@ public class CreateJobApiTestWithFakeData {
 	
 	
 	
+	
+	
+	int tr_problem_job_id=createJobResponseModel.getData().getId();
+	
+	MapJobProblemDBModel jobDataFromDB= MapJobProblemDao.getProblemDetails(tr_problem_job_id);
+	List<Problems> problems= createJobPayload.problems();
+	Assert.assertEquals(jobDataFromDB.getMst_problem_id(), problems.get(0).id());
+	Assert.assertEquals(jobDataFromDB.getRemark(), problems.get(0).remark());
+	
+	
 	CustomerProductDBModel customerProductDataFromDb=CustomerProductDao.getCustomerProduct(customerProductId);
 	CustomerProduct customerProduct = createJobPayload.customer_product();
-	
 	Assert.assertEquals(customerProductDataFromDb.getMst_model_id(), customerProduct.mst_model_id());
 	Assert.assertEquals(customerProductDataFromDb.getPopurl(), customerProduct.popurl());
-	
-
 	
 	}
 
