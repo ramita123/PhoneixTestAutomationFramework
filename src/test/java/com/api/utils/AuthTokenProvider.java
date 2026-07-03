@@ -6,6 +6,9 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.lessThan;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import org.hamcrest.Matchers;
 
@@ -20,7 +23,7 @@ import io.restassured.response.Response;
 
 public class AuthTokenProvider {
 
-
+ private static Map<Role,String> tokenCache=new ConcurrentHashMap<>();
 
 	private AuthTokenProvider() {
 		// private constructor;
@@ -28,6 +31,10 @@ public class AuthTokenProvider {
 
 	public static String getToken(Role role) throws IOException {
 		// TODO Auto-generated method stub
+		
+		if(tokenCache.containsKey(role)) {
+			return tokenCache.get(role);
+		}
 		UserCredentials userCredentials = null;
 		if (role==FD) {
 
@@ -54,6 +61,7 @@ public class AuthTokenProvider {
 				.body().jsonPath()
 
 				.getString("data.token");
+		tokenCache.put(role, token);
 		return token;
 	}
 
