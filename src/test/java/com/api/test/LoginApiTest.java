@@ -11,6 +11,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import com.api.request.model.UserCredentials;
+import com.api.services.AuthService;
 
 import static com.api.utils.SpecUtil.*;
 
@@ -20,26 +21,22 @@ import io.restassured.http.ContentType;
 import static io.restassured.module.jsv.JsonSchemaValidator.*;
 
 public class LoginApiTest {
-	
+
 	private UserCredentials userCredentials;
-	
-	
-	@BeforeMethod(description="create the payload for login api")
+	private AuthService authService;
+
+	@BeforeMethod(description = "create the payload for login api")
 	public void setUp() {
-		 userCredentials = new UserCredentials("iamfd", "password");
+		userCredentials = new UserCredentials("iamfd", "password");
+		authService = new AuthService();
 		// ConfigManager configManager= null;
 	}
 
-	@Test(description="verify login api is working for the user FD",groups= {"api","regression","smoke"})
+	@Test(description = "verify login api is working for the user FD", groups = { "api", "regression", "smoke" })
 	public void loginApiTest() throws IOException {
 
-		
-
-		given().spec(requestSpec(userCredentials)).
-		when().post("/login").
-		then().spec(responseSpec_OK())
-		.body("message", equalTo("Success"))
-		.body(matchesJsonSchemaInClasspath("response-schema/loginResponseSchema.json"));
+		authService.login(userCredentials).then().spec(responseSpec_OK()).body("message", equalTo("Success"))
+				.body(matchesJsonSchemaInClasspath("response-schema/loginResponseSchema.json"));
 	}
 
 }
