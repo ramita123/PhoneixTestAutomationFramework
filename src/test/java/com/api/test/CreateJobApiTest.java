@@ -28,11 +28,14 @@ import com.api.request.model.Customer;
 import com.api.request.model.CustomerAdress;
 import com.api.request.model.CustomerProduct;
 import com.api.request.model.Problems;
+import com.api.services.JobService;
+
 import static com.api.utils.SpecUtil.*;
 
 public class CreateJobApiTest {
 	
 	private CreateJobPayload createJobPayload;
+	private JobService  jobService;
 	
 	@BeforeMethod()
 	public void setUp(){
@@ -44,14 +47,16 @@ public class CreateJobApiTest {
 		problemList.add(problesm);
 	
 		createJobPayload= new CreateJobPayload(ServiceLocation.SERVICE_LOCATION_A.getCode(), Platform.FRONTE_DESK.getCode(), Warranty.IN_WARRANTY.getCode(), OEM.GOOGLE.getCode(), customer, customerAddress, customerProduct, problemList);
+		  jobService= new JobService();
 	}
 	
 	
 	@Test(description="verifying if create job api is able to create inwarranty job",groups= {"api","regression","smoke"})
 	public void createJobApiTest() throws IOException {
 		
-		given().spec(requestSpecWithAuth(Role.FD, createJobPayload)).when().post("/job/create").then().spec(responseSpec_OK()).
-		body("message", equalTo("Job created successfully. ")).
+		
+		jobService.createJob(Role.FD,createJobPayload).
+		then().spec(responseSpec_OK()).body("message", equalTo("Job created successfully. ")).
 		body(matchesJsonSchemaInClasspath("response-schema/createJobResponseSchema.json")).
 		body("data.mst_service_location_id",equalTo(1)).body("data.job_number", startsWith("JOB_"))
 		.body("data",hasKey("id"));

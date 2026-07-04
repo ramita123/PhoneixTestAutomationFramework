@@ -32,6 +32,7 @@ import com.api.request.model.CustomerAdress;
 import com.api.request.model.CustomerProduct;
 import com.api.request.model.Problems;
 import com.api.response.model.CreateJobResponseModel;
+import com.api.services.JobService;
 import com.api.utils.DateTimeUtility;
 import com.database.dao.CustomerAddressDao;
 import com.database.dao.CustomerDao;
@@ -55,21 +56,21 @@ public class CreateJobApiTestWithFakeData {
 	private CreateJobPayload createJobPayload;
 	private Customer customer;
 	private CustomerAdress customerAddress;
-
+	private JobService jobService;
 	@BeforeMethod
 	public void setUp() {
 		createJobPayload = generateFakeCreateJobData();
 		customer = createJobPayload.customer();
 		customerAddress = createJobPayload.customer_address();
 		
-		
+		jobService= new JobService();
 		
 	}
 
 	@Test(description="verifying if create job api is able to create inwarranty job",groups= {"api","regression","smoke"})
 	public void createJobApiTest() throws IOException {
 		
-		CreateJobResponseModel createJobResponseModel=given().spec(requestSpecWithAuth(Role.FD, createJobPayload)).when().post("/job/create").then().spec(responseSpec_OK()).
+		CreateJobResponseModel createJobResponseModel=jobService.createJob(Role.FD,createJobPayload).then().spec(responseSpec_OK()).
 		body("message", equalTo("Job created successfully. ")).
 		body(matchesJsonSchemaInClasspath("response-schema/createJobResponseSchema.json")).
 		body("data.mst_service_location_id",equalTo(1)).body("data.job_number", startsWith("JOB_"))
