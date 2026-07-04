@@ -21,7 +21,7 @@ public class SpecUtil {
 	
 	//get-delete
 	
-	public static RequestSpecification requestSpec() throws IOException {
+	public static RequestSpecification requestSpec() {
 		
 		
 	RequestSpecification request=	new RequestSpecBuilder().setBaseUri(getProperty("BASE_URI"))
@@ -53,26 +53,38 @@ public class SpecUtil {
 	
 	
 	
-	public static RequestSpecification requestSpecWithAuth(Role role) throws IOException  {
-		RequestSpecification requestSpecification=	new RequestSpecBuilder().setBaseUri(getProperty("BASE_URI"))
-				.setContentType(ContentType.JSON).setAccept(ContentType.JSON).addHeader("Authorization", getToken(role))
-				.log(LogDetail.URI)
-				.log(LogDetail.METHOD)
-				.log(LogDetail.HEADERS)
-				.log(LogDetail.BODY).build();
+	public static RequestSpecification requestSpecWithAuth(Role role)   {
+		RequestSpecification requestSpecification = null;
+		try {
+			requestSpecification = new RequestSpecBuilder().setBaseUri(getProperty("BASE_URI"))
+					.setContentType(ContentType.JSON).setAccept(ContentType.JSON).addHeader("Authorization", getToken(role))
+					.log(LogDetail.URI)
+					.log(LogDetail.METHOD)
+					.log(LogDetail.HEADERS)
+					.log(LogDetail.BODY).build();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 				
 				return requestSpecification;	
 		
 	}
 	
 	
-	public static RequestSpecification requestSpecWithAuth(Role role,Object payload) throws IOException  {
-		RequestSpecification requestSpecification=	new RequestSpecBuilder().setBaseUri(getProperty("BASE_URI"))
-				.setContentType(ContentType.JSON).setAccept(ContentType.JSON).addHeader("Authorization", getToken(role)).setBody(payload)
-				.log(LogDetail.URI)
-				.log(LogDetail.METHOD)
-				.log(LogDetail.HEADERS)
-				.log(LogDetail.BODY).build();
+	public static RequestSpecification requestSpecWithAuth(Role role,Object payload)   {
+		RequestSpecification requestSpecification = null;
+		try {
+			requestSpecification = new RequestSpecBuilder().setBaseUri(getProperty("BASE_URI"))
+					.setContentType(ContentType.JSON).setAccept(ContentType.JSON).addHeader("Authorization", getToken(role)).setBody(payload)
+					.log(LogDetail.URI)
+					.log(LogDetail.METHOD)
+					.log(LogDetail.HEADERS)
+					.log(LogDetail.BODY).build();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 				
 				return requestSpecification;	
 		
