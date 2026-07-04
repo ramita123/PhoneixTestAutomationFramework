@@ -8,19 +8,29 @@ import static org.hamcrest.Matchers.notNullValue;
 import java.io.IOException;
 
 import static org.hamcrest.Matchers.*;
+
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import com.api.constant.Role;
+import com.api.services.MasterService;
+
 import static com.api.utils.SpecUtil.*;
 
 import static io.restassured.module.jsv.JsonSchemaValidator.*;
 
 public class MasterApiTest {
 	
+	MasterService masterService;
+	@BeforeMethod(description="Intialize the MAsterService")
+	public void setUp(){
+		 masterService= new MasterService();	
+	}
+	
 	@Test(description="verify master api giving correct response",groups= {"api","regression","smoke"})
 	public void masterApiTest() throws IOException {
 		
-		given().spec(requestSpecWithAuth(Role.FD)).
+		masterService.master(Role.FD).
 		then().spec(responseSpec_OK()).body("message", equalTo("Success")).
 		body("data",notNullValue()).body("data",hasKey("mst_oem"))
 		.body("data",hasKey("mst_model"))
@@ -33,8 +43,7 @@ public class MasterApiTest {
 	
 	@Test(description="verify the api is returning correct status code for invalid auth",groups= {"api","regression","smoke"})
 	public void invalidTokenMasterApi() throws IOException {
-		given().spec(requestSpec()).
-		when().post("/master").
+		masterService.masterWithoutAuth().
 		then().spec(responseSpec_TEXT(401));
 	}
 

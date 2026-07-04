@@ -29,6 +29,7 @@ import com.api.request.model.Customer;
 import com.api.request.model.CustomerAdress;
 import com.api.request.model.CustomerProduct;
 import com.api.request.model.Problems;
+import com.api.services.JobService;
 import com.database.dao.CustomerDao;
 import com.database.model.CustomerDBModel;
 
@@ -38,24 +39,26 @@ public class CreateJobApiWithDBValidationTest {
 	
 	private CreateJobPayload createJobPayload;
 	private Customer  customer;
+	private JobService jobService;
 	
-	@BeforeMethod()
+	@BeforeMethod(description="create create job api payload and intializing JobService")
 	public void setUp(){
 		  customer= new Customer("ramita", "sambyal", "8976546789", "", "ramitasambyal@gmail.com", "");
 		CustomerAdress customerAddress =new CustomerAdress("duplex", "duplex", "harsar", "duplex", "duplex", "176023", "india", "HP");
-		CustomerProduct customerProduct= new CustomerProduct(getTimeWithDaysAgo(10), "ime_8360378289", "13653334466829", "121144599700951", getTimeWithDaysAgo(10), Product.NEXUS_2.getCode(), Model.NEXUS_2_BLUE.getCode());
+		CustomerProduct customerProduct= new CustomerProduct(getTimeWithDaysAgo(10), "ime_8360378289", "13653334468829", "121144599990951", getTimeWithDaysAgo(10), Product.NEXUS_2.getCode(), Model.NEXUS_2_BLUE.getCode());
 		Problems problesm=new Problems(Problem.OVERHEATING.getCode(),"overheatingIssue" );
 		List<Problems> problemList=new ArrayList<>();
 		problemList.add(problesm);
 	
 		createJobPayload= new CreateJobPayload(ServiceLocation.SERVICE_LOCATION_A.getCode(), Platform.FRONTE_DESK.getCode(), Warranty.IN_WARRANTY.getCode(), OEM.GOOGLE.getCode(), customer, customerAddress, customerProduct, problemList);
+		  jobService= new JobService();
 	}
 	
 	
 	@Test(description="verifying if create job api is able to create inwarranty job",groups= {"api","regression","smoke"})
 	public void createJobApiTest() throws IOException {
 		
-	int customerId=	given().spec(requestSpecWithAuth(Role.FD, createJobPayload)).when().post("/job/create").then().spec(responseSpec_OK()).
+	int customerId=	jobService.createJob(Role.FD,createJobPayload).then().spec(responseSpec_OK()).
 		body("message", equalTo("Job created successfully. ")).
 		body(matchesJsonSchemaInClasspath("response-schema/createJobResponseSchema.json")).
 		body("data.mst_service_location_id",equalTo(1)).body("data.job_number", startsWith("JOB_"))

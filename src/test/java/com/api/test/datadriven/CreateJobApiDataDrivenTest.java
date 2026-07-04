@@ -28,25 +28,32 @@ import com.api.request.model.Customer;
 import com.api.request.model.CustomerAdress;
 import com.api.request.model.CustomerProduct;
 import com.api.request.model.Problems;
+import com.api.services.JobService;
+
 import static com.api.utils.SpecUtil.*;
 
 public class CreateJobApiDataDrivenTest {
-	
 
-	
-	@Test(description="verifying if create job api is able to create inwarranty job",groups= {"api","regression","smoke","csv"},
-			dataProviderClass=com.dataproviders.DataProviderUtils.class, dataProvider="CreateJobApiDataProvider")
+	private JobService jobService;
+
+	@BeforeMethod(description = "Instantiating Job service ")
+	public void setUp() {
+		jobService = new JobService();
+	}
+
+	@Test(description = "verifying if create job api is able to create inwarranty job", groups = { "api", "regression",
+			"smoke",
+			"csv" }, dataProviderClass = com.dataproviders.DataProviderUtils.class, dataProvider = "CreateJobApiDataProvider")
 	public void createJobApiTest(CreateJobPayload createJobPayload) throws IOException {
-		
-		given().spec(requestSpecWithAuth(Role.FD, createJobPayload)).when().post("/job/create").then().spec(responseSpec_OK()).
-		body("message", equalTo("Job created successfully. ")).
-		body(matchesJsonSchemaInClasspath("response-schema/createJobResponseSchema.json")).
-		body("data.mst_service_location_id",equalTo(1)).body("data.job_number", startsWith("JOB_"))
-		.body("data",hasKey("id"));
-		
-	//	.body(Matchers.hasProperty("data.id"));
 
-		
+		jobService.createJob(Role.FD, createJobPayload).then().spec(responseSpec_OK())
+				.body("message", equalTo("Job created successfully. "))
+				.body(matchesJsonSchemaInClasspath("response-schema/createJobResponseSchema.json"))
+				.body("data.mst_service_location_id", equalTo(1)).body("data.job_number", startsWith("JOB_"))
+				.body("data", hasKey("id"));
+
+		// .body(Matchers.hasProperty("data.id"));
+
 	}
 
 }
