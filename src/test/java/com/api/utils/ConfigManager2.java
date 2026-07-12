@@ -7,22 +7,33 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import com.api.services.MasterService;
+
 public class ConfigManager2 {
 
-	// wap to read the peroperty file from
-	// src/java/resources/config/config.properties
+	
 	private static Properties prop = new Properties();
 	private static String filePath;
 	private static String env;
+	private static final Logger LOGGER= LogManager.getLogger(MasterService.class);
+
 
 	private ConfigManager2() {
 
 	}
 
-	// static block going to execute only once during the class loading
 	static {
-
+		LOGGER.info("Reading environment value passed from terminal");
+		if(System.getProperty("env")==null) {
+			LOGGER.warn("Environment is not set picking up the default qa environment");
+		}
+		
 		env = System.getProperty("env","qa");
+		LOGGER.info("Runnning the tests in env {}",env);
+
 		env= env.toLowerCase().trim();
 
 		switch (env) {
@@ -47,16 +58,21 @@ public class ConfigManager2 {
 		
 
 		}
+		
+		LOGGER.info("Using the properties file from the path {}",filePath);
+
 	
 		InputStream inputStream = Thread.currentThread().getContextClassLoader().getResourceAsStream(filePath);
 
 		if (inputStream == null) {
-			throw new RuntimeException("cannot find the file at path" + filePath);
+			LOGGER.error("cannot read the file at path",filePath);
+			throw new RuntimeException("cannot find the file at path {}" + filePath);
 		}
 		try {
 			prop.load(inputStream);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			LOGGER.error("cannot find the file  at path {}",filePath);
+
 			e.printStackTrace();
 		}
 	}

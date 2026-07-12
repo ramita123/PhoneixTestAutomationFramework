@@ -3,22 +3,26 @@ package com.api.utils;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.api.request.model.CreateJobPayload;
 import com.api.request.model.Customer;
 import com.api.request.model.CustomerAdress;
 import com.api.request.model.CustomerProduct;
 import com.api.request.model.Problems;
+import com.api.services.MasterService;
 import com.dataproviders.api.bean.CreateJobBean;
 
 public class CreateJobBeanMapper {
 
-	// we will give bean to this mapper and it will conver createJob payload
+	private static final Logger LOGGER= LogManager.getLogger(MasterService.class);
 
 	private CreateJobBeanMapper() {
 	};
 
 	public static CreateJobPayload mapper(CreateJobBean bean) {
-
+		LOGGER.info("create job bean to create job payload",bean);
 		// bean to createjobPayload object
 		int mst_service_location_id = Integer.parseInt(bean.getMstServiceLocationId());
 		int mst_platform_id = Integer.parseInt(bean.getMstPlatformId());

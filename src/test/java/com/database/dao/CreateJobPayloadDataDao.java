@@ -8,10 +8,16 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import com.api.services.MasterService;
 import com.database.DatabaseManager;
 import com.dataproviders.api.bean.CreateJobBean;
 
 public class CreateJobPayloadDataDao {
+	private static final Logger LOGGER= LogManager.getLogger(CreateJobPayloadDataDao.class);
+
 
 	private static final String SQL_QUERY = """
 						SELECT c.first_name,
@@ -60,8 +66,10 @@ public class CreateJobPayloadDataDao {
 		
 		List<CreateJobBean> beanList= new ArrayList<>();
 		try {
+			LOGGER.info("Getting the connection from database manager");
 			conn = DatabaseManager.getConnection();
 			statement = conn.createStatement();
+			LOGGER.info("Executing the SQL query {}",SQL_QUERY);
 			resultSet = statement.executeQuery(SQL_QUERY);
 
 			while (resultSet.next()) {
@@ -101,7 +109,7 @@ public class CreateJobPayloadDataDao {
 			
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			LOGGER.error("cannot convert the result set to bean",e);
 			e.printStackTrace();
 		}for(CreateJobBean beans:beanList) {
 			System.out.println(beans);

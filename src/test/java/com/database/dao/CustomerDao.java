@@ -6,10 +6,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import com.api.services.MasterService;
 import com.database.DatabaseManager;
 import com.database.model.CustomerDBModel;
 
 public class CustomerDao {
+	private static final Logger LOGGER= LogManager.getLogger(CustomerDao.class);
+
 	// executing the sql query which will give the customer table details.
 
 	private static final String CUSTOMER_DETAIL_QUERY = """
@@ -23,10 +29,14 @@ public class CustomerDao {
 		Connection conn;
 		CustomerDBModel customerDBModel = null;
 		try {
+			LOGGER.info("Getting the connection from database manager");
+
 			conn = DatabaseManager.getConnection();
 		
 		PreparedStatement preparedStatement = conn.prepareStatement(CUSTOMER_DETAIL_QUERY);
 		preparedStatement.setInt(1, customerId);
+		LOGGER.info("Executing the SQL query {}",CUSTOMER_DETAIL_QUERY);
+
 
 		ResultSet resultSet = preparedStatement.executeQuery();
 	
@@ -39,6 +49,8 @@ public class CustomerDao {
 
 		}
 		}catch(SQLException e) {
+			LOGGER.error("cannot convert the result set to Customer details ",e);
+
 			throw new RuntimeException();
 		}
 
