@@ -41,7 +41,7 @@ public class MasterApiTest {
 		
 	}
 	
-	@Test(description="verify the api is returning correct status code for invalid auth",groups= {"api","regression","smoke"})
+	@Test(description="verify the api is returning correct status code for invalid authorization",groups= {"api","regression","smoke"})
 	public void invalidTokenMasterApi() throws IOException {
 		masterService.masterWithoutAuth().
 		then().spec(responseSpec_TEXT(401));
