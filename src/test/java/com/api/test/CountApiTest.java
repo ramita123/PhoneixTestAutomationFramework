@@ -10,6 +10,7 @@ import java.io.IOException;
 import static org.hamcrest.Matchers.*;
 
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import com.api.constant.Role;
@@ -19,6 +20,8 @@ import static com.api.utils.SpecUtil.*;
 
 import static io.restassured.module.jsv.JsonSchemaValidator.*;
 
+
+@Listeners(com.listeners.ApiTestListerner.class)
 public class CountApiTest {
 	private DashboardService dashboardService;
 	

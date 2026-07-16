@@ -13,6 +13,7 @@ import java.util.List;
 import static org.hamcrest.Matchers.*;
 
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import com.api.constant.Model;
@@ -32,6 +33,8 @@ import com.api.services.JobService;
 
 import static com.api.utils.SpecUtil.*;
 
+
+@Listeners(com.listeners.ApiTestListerner.class)
 public class CreateJobApiDBDataDrivenTest {
 	
 	private JobService jobService;

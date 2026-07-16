@@ -8,6 +8,7 @@ import java.io.IOException;
 
 import org.hamcrest.Matchers;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import com.api.request.model.UserCredentials;
@@ -21,6 +22,8 @@ import static com.api.utils.ConfigManager2.*;
 import io.restassured.http.ContentType;
 import static io.restassured.module.jsv.JsonSchemaValidator.*;
 
+
+@Listeners(com.listeners.ApiTestListerner.class)
 public class LoginApiDataDrivenTest {
 
 	private  AuthService authService;

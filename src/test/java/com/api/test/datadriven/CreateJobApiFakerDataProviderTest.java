@@ -15,6 +15,7 @@ import java.util.Random;
 import static org.hamcrest.Matchers.*;
 
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import com.api.constant.Model;
@@ -37,6 +38,8 @@ import com.github.javafaker.Faker;
 
 import static com.api.utils.SpecUtil.*;
 
+
+@Listeners(com.listeners.ApiTestListerner.class)
 public class CreateJobApiFakerDataProviderTest {
 	
 	
