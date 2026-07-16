@@ -7,6 +7,7 @@ import static  org.hamcrest.Matchers.*;
 import java.io.IOException;
 
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import static com.api.constant.Role.*;
@@ -22,7 +23,7 @@ import io.restassured.http.ContentType;
 import io.restassured.http.Header;
 
 
-
+@Listeners(com.listeners.ApiTestListerner.class)
 public class UserDetailsApiTest {
 	
 	private UserService userService;
