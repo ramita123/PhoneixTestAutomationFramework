@@ -14,6 +14,7 @@ import static org.hamcrest.Matchers.*;
 
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import com.api.constant.Model;
@@ -35,6 +36,7 @@ import com.database.model.CustomerDBModel;
 
 import static com.api.utils.SpecUtil.*;
 
+@Listeners(com.listeners.ApiTestListerner.class)
 public class CreateJobApiWithDBValidationTest {
 	
 	private CreateJobPayload createJobPayload;

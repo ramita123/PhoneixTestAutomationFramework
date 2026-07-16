@@ -1,6 +1,7 @@
 package com.api.test;
 
 import static com.api.utils.DateTimeUtility.getTimeWithDaysAgo;
+
 import static io.restassured.RestAssured.given;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static org.hamcrest.Matchers.equalTo;
@@ -16,6 +17,7 @@ import static org.hamcrest.Matchers.*;
 
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import com.api.constant.Model;
@@ -52,6 +54,7 @@ import io.restassured.response.Response;
 
 import static com.api.utils.SpecUtil.*;
 
+@Listeners(com.listeners.ApiTestListerner.class)
 public class CreateJobApiTestWithFakeData {
 	private CreateJobPayload createJobPayload;
 	private Customer customer;

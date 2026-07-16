@@ -4,9 +4,10 @@ import static com.api.utils.ConfigManager2.getProperty;
 
 import java.io.IOException;
 
-import static  org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.*;
 
 import com.api.constant.Role;
+import com.api.filters.SensitiveDataFilter;
 import com.api.request.model.UserCredentials;
 
 import static com.api.utils.AuthTokenProvider.*;
@@ -18,100 +19,80 @@ import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
 
 public class SpecUtil {
-	
-	//get-delete
-	
+
+	// get-delete
+
 	public static RequestSpecification requestSpec() {
-		
-		
-	RequestSpecification request=	new RequestSpecBuilder().setBaseUri(getProperty("BASE_URI"))
-		.setContentType(ContentType.JSON).setAccept(ContentType.JSON)
-		.log(LogDetail.URI)
-		.log(LogDetail.METHOD)
-		.log(LogDetail.HEADERS)
-		.log(LogDetail.BODY).build();
-		
-		return request;	
-		
+
+		RequestSpecification request = new RequestSpecBuilder().setBaseUri(getProperty("BASE_URI"))
+				.setContentType(ContentType.JSON).setAccept(ContentType.JSON).build();
+
+		return request;
+
 	}
-	
-	
-	//post-put-patch
-	public static RequestSpecification requestSpec(Object userCredentials)  {
-		
-		
-		RequestSpecification requestSpecification=	new RequestSpecBuilder().setBaseUri(getProperty("BASE_URI"))
-			.setContentType(ContentType.JSON).setAccept(ContentType.JSON).setBody(userCredentials)
-			.log(LogDetail.URI)
-			.log(LogDetail.METHOD)
-			.log(LogDetail.HEADERS)
-			.log(LogDetail.BODY).build();
-			
-			return requestSpecification;	
-		}
-	
-	
-	
-	
-	public static RequestSpecification requestSpecWithAuth(Role role)   {
+
+	// post-put-patch
+	public static RequestSpecification requestSpec(Object userCredentials) {
+
+		RequestSpecification requestSpecification = new RequestSpecBuilder().setBaseUri(getProperty("BASE_URI"))
+				.setContentType(ContentType.JSON).setAccept(ContentType.JSON).setBody(userCredentials)
+				.addFilter(new SensitiveDataFilter())
+
+				.build();
+
+		return requestSpecification;
+	}
+
+	public static RequestSpecification requestSpecWithAuth(Role role) {
 		RequestSpecification requestSpecification = null;
 		try {
 			requestSpecification = new RequestSpecBuilder().setBaseUri(getProperty("BASE_URI"))
-					.setContentType(ContentType.JSON).setAccept(ContentType.JSON).addHeader("Authorization", getToken(role))
-					.log(LogDetail.URI)
-					.log(LogDetail.METHOD)
-					.log(LogDetail.HEADERS)
-					.log(LogDetail.BODY).build();
+					.setContentType(ContentType.JSON).setAccept(ContentType.JSON)
+					.addHeader("Authorization", getToken(role)).
+					addFilter(new SensitiveDataFilter()).
+					build();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-				
-				return requestSpecification;	
-		
+
+		return requestSpecification;
+
 	}
-	
-	
-	public static RequestSpecification requestSpecWithAuth(Role role,Object payload)   {
+
+	public static RequestSpecification requestSpecWithAuth(Role role, Object payload) {
 		RequestSpecification requestSpecification = null;
 		try {
 			requestSpecification = new RequestSpecBuilder().setBaseUri(getProperty("BASE_URI"))
-					.setContentType(ContentType.JSON).setAccept(ContentType.JSON).addHeader("Authorization", getToken(role)).setBody(payload)
-					.log(LogDetail.URI)
-					.log(LogDetail.METHOD)
-					.log(LogDetail.HEADERS)
-					.log(LogDetail.BODY).build();
+					.setContentType(ContentType.JSON).setAccept(ContentType.JSON)
+					.addHeader("Authorization", getToken(role)).setBody(payload).
+					addFilter(new SensitiveDataFilter()).
+					build();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-				
-				return requestSpecification;	
-		
+
+		return requestSpecification;
+
 	}
-	
-	
+
 	public static ResponseSpecification responseSpec_OK() {
-	ResponseSpecification responseSpecification=	new ResponseSpecBuilder().expectContentType(ContentType.JSON).expectStatusCode(200)
-		.expectResponseTime(lessThan(1000l)).log(LogDetail.ALL).build();
+		ResponseSpecification responseSpecification = new ResponseSpecBuilder().expectContentType(ContentType.JSON)
+				.expectStatusCode(200).expectResponseTime(lessThan(1000l)).build();
 		return responseSpecification;
 	}
-	
-	
+
 	public static ResponseSpecification responseSpec_JSON(int statusCode) {
-		ResponseSpecification responseSpecification=	new ResponseSpecBuilder().expectContentType(ContentType.JSON).expectStatusCode(statusCode)
-			.expectResponseTime(lessThan(1000l)).log(LogDetail.ALL).build();
-			return responseSpecification;
-		}
-	
-	
+		ResponseSpecification responseSpecification = new ResponseSpecBuilder().expectContentType(ContentType.JSON)
+				.expectStatusCode(statusCode).expectResponseTime(lessThan(1000l)).build();
+		return responseSpecification;
+	}
+
 	public static ResponseSpecification responseSpec_TEXT(int statusCode) {
-		ResponseSpecification responseSpecification=	new ResponseSpecBuilder().expectStatusCode(statusCode)
-			.expectResponseTime(lessThan(1000l)).log(LogDetail.ALL).build();
-			return responseSpecification;
-		}
-	
-	
-	
+		ResponseSpecification responseSpecification = new ResponseSpecBuilder().expectStatusCode(statusCode)
+				.expectResponseTime(lessThan(1000l)).build();
+		return responseSpecification;
+	}
 
 }
