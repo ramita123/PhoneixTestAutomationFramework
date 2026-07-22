@@ -13,6 +13,7 @@ import com.api.request.model.UserCredentials;
 import static com.api.utils.AuthTokenProvider.*;
 
 import io.qameta.allure.Step;
+import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.filter.log.LogDetail;
@@ -41,7 +42,7 @@ public class SpecUtil {
 		RequestSpecification requestSpecification = new RequestSpecBuilder().setBaseUri(getProperty("BASE_URI"))
 				.setContentType(ContentType.JSON).setAccept(ContentType.JSON).setBody(userCredentials)
 				.addFilter(new SensitiveDataFilter())
-
+				.addFilter(new AllureRestAssured())
 				.build();
 
 		return requestSpecification;
@@ -54,8 +55,9 @@ public class SpecUtil {
 			requestSpecification = new RequestSpecBuilder().setBaseUri(getProperty("BASE_URI"))
 					.setContentType(ContentType.JSON).setAccept(ContentType.JSON)
 					.addHeader("Authorization", getToken(role)).
-					addFilter(new SensitiveDataFilter()).
-					build();
+					addFilter(new SensitiveDataFilter())
+					.addFilter(new AllureRestAssured())
+					.build();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -72,7 +74,8 @@ public class SpecUtil {
 			requestSpecification = new RequestSpecBuilder().setBaseUri(getProperty("BASE_URI"))
 					.setContentType(ContentType.JSON).setAccept(ContentType.JSON)
 					.addHeader("Authorization", getToken(role)).setBody(payload).
-					addFilter(new SensitiveDataFilter()).
+					addFilter(new SensitiveDataFilter())
+					.addFilter(new AllureRestAssured()).
 					build();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
