@@ -10,6 +10,7 @@ import org.apache.logging.log4j.Logger;
 import com.api.constant.Role;
 import com.api.request.model.CreateJobPayload;
 
+import io.qameta.allure.Step;
 import io.restassured.response.Response;
 
 public class JobService {
@@ -19,14 +20,17 @@ public class JobService {
 	private static final String SEARCH_ENDPOINT="/job/search";
 	private static final Logger LOGGER= LogManager.getLogger(JobService.class);
 
-	
+	@Step("making create job api request with the role and payload")
 	public Response createJob(Role role,CreateJobPayload createJobPayload) {
-		LOGGER.info("mkaing request to the {} endpoint with the role {} and the payload{}",CREATE_ENDPOINT,role,createJobPayload);
+		LOGGER.info("making request to the {} endpoint with the role {} and the payload{}",CREATE_ENDPOINT,role,createJobPayload);
 	Response response=	given().spec(requestSpecWithAuth(role,createJobPayload)).
 		when().post(CREATE_ENDPOINT);
 	return response;
 	}
 	
+	
+	
+	@Step("making search api request with the role and payload")
 	public Response Search(Role role,Object payload) {
 		LOGGER.info("making request to the {} endpoint  with the role {} and the payload{}",SEARCH_ENDPOINT,role,payload);
 

@@ -12,12 +12,14 @@ import org.apache.logging.log4j.Logger;
 
 import com.api.services.MasterService;
 
+import io.qameta.allure.Step;
+
 public class ConfigManager2 {
 
 	
 	private static Properties prop = new Properties();
 	private static String filePath;
-	private static String env;
+	public static String env;
 	private static final Logger LOGGER= LogManager.getLogger(MasterService.class);
 
 
@@ -77,6 +79,7 @@ public class ConfigManager2 {
 		}
 	}
 
+	@Step("Getting the property value from the config")
 	public static String getProperty(String key)  {
 
 		return prop.getProperty(key);

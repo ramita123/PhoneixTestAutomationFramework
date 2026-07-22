@@ -20,6 +20,7 @@ import com.api.constant.Role;
 import com.api.request.model.UserCredentials;
 import com.api.services.MasterService;
 
+import io.qameta.allure.Step;
 import io.restassured.http.ContentType;
 import io.restassured.module.jsv.JsonSchemaValidator;
 import io.restassured.response.Response;
@@ -33,6 +34,9 @@ public class AuthTokenProvider {
 	private AuthTokenProvider() {
 		// private constructor;
 	}
+	
+	
+	@Step("Getting the auth token  for the role")
 
 	public static String getToken(Role role) throws IOException {
 		// TODO Auto-generated method stub

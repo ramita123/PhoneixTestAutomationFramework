@@ -8,6 +8,8 @@ import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 
+import com.api.utils.AllureEnvironmentWriterUtil;
+
 public class ApiTestListerner implements ITestListener {
 	
 	private static final Logger LOGGER= LogManager.getLogger(ApiTestListerner.class);
@@ -39,7 +41,9 @@ public class ApiTestListerner implements ITestListener {
 		  }
 
 	 public  void onStart(ITestContext context) {
-		    // not implemented
+		 LOGGER.info("Test start and want to check if allure creating .properties file");
+		 AllureEnvironmentWriterUtil.createEnvironmentProperties();
+		   
 		  }
 	 
 	 public void onFinish(ITestContext context) {

@@ -10,6 +10,7 @@ import com.api.constant.Role;
 
 import static com.api.utils.SpecUtil.*;
 
+import io.qameta.allure.Step;
 import io.restassured.response.Response;
 
 public class MasterService {
@@ -17,6 +18,7 @@ public class MasterService {
 	private static final String MASTER_DETAILS_ENDPOINT = "/master";
 	private static final Logger LOGGER= LogManager.getLogger(MasterService.class);
 
+	@Step("making search api request for the role")
 	public Response master(Role role) {
 		LOGGER.info("making api for end point {} with role {}",MASTER_DETAILS_ENDPOINT,role);
 		Response response = given().spec(requestSpecWithAuth(role)).when().post(MASTER_DETAILS_ENDPOINT);
@@ -24,6 +26,7 @@ public class MasterService {
 		return response;
 	}
 
+	@Step("making search api request without auth token")
 	public Response masterWithoutAuth() {
 		LOGGER.info("making api for end point {} without the auth token",MASTER_DETAILS_ENDPOINT);
 
