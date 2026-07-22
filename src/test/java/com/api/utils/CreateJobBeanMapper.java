@@ -14,12 +14,16 @@ import com.api.request.model.Problems;
 import com.api.services.MasterService;
 import com.dataproviders.api.bean.CreateJobBean;
 
+import io.qameta.allure.Step;
+
 public class CreateJobBeanMapper {
 
 	private static final Logger LOGGER= LogManager.getLogger(MasterService.class);
 
 	private CreateJobBeanMapper() {
 	};
+
+	@Step("Converting create job bean to create job payload for create job api")
 
 	public static CreateJobPayload mapper(CreateJobBean bean) {
 		LOGGER.info("create job bean to create job payload",bean);

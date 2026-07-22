@@ -11,6 +11,7 @@ import com.api.constant.Role;
 import com.api.request.model.UserCredentials;
 import com.dataproviders.api.bean.UserBean;
 
+import io.qameta.allure.Step;
 import io.restassured.response.Response;
 
 public class AuthService {
@@ -20,6 +21,7 @@ public class AuthService {
 	private static final String LOGIN_ENDPOINT="/login";
 	private static final Logger LOGGER= LogManager.getLogger(AuthService.class);
 	
+	@Step("Perform login with user credentials")
 	public Response login(Object userCredentials) {
 		LOGGER.info("Making login request for the payload {}",((UserBean)userCredentials).getUsername());
 

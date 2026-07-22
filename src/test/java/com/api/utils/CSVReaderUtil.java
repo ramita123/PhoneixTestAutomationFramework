@@ -18,6 +18,8 @@ import com.opencsv.bean.CsvToBeanBuilder;
 import com.opencsv.exceptions.CsvException;
 import com.opencsv.exceptions.CsvValidationException;
 
+import io.qameta.allure.Step;
+
 public class CSVReaderUtil {
 	private static final Logger LOGGER= LogManager.getLogger(MasterService.class);
 
@@ -26,6 +28,7 @@ public class CSVReaderUtil {
 
 	}
 
+	@Step("Loading test data from CSV file")
 	public static <T> Iterator<T> loadCSV(String pathOfCSVFile,Class<T> bean)  {
 		LOGGER.info("Loding the CSV file {}",pathOfCSVFile);
 		InputStream inputStream = Thread.currentThread().getContextClassLoader()

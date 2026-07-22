@@ -24,6 +24,8 @@ import com.api.request.model.Problems;
 import com.api.services.MasterService;
 import com.github.javafaker.Faker;
 
+import io.qameta.allure.Step;
+
 public class FakerDataGenerator {
 
 	private FakerDataGenerator() {
@@ -40,7 +42,8 @@ public class FakerDataGenerator {
 	private static void validProblemIds() {
 
 	}
-
+	
+	@Step("Generating fake create job data")
 	public static CreateJobPayload generateFakeCreateJobData() {
 		Customer customer = generateFakeCustomerData();
 
@@ -55,6 +58,8 @@ public class FakerDataGenerator {
 				customerAddress, customerProduct, problemsList);
 		return createJobPayload;
 	}
+
+	@Step("Generating fake create job data with the count")
 
 	public static Iterator<CreateJobPayload> generateFakeCreateJobData(int count) {
 		LOGGER.info("generating the fake {}  payload for create job",count);
@@ -77,6 +82,7 @@ public class FakerDataGenerator {
 		return payloadList.iterator();
 	}
 
+	@Step("Generating fake customer data")
 	private static Customer generateFakeCustomerData() {
 
 		Customer customer = new Customer(faker.name().firstName(), faker.name().lastName(),
@@ -85,13 +91,15 @@ public class FakerDataGenerator {
 		System.out.println(customer);
 		return customer;
 	}
-
-	private static CustomerAdress generateFakeCustomerAddressData() {
+	@Step("Generating fake customer address")
+ static CustomerAdress generateFakeCustomerAddressData() {
 		return new CustomerAdress(faker.numerify("###"), faker.address().streetName(), faker.address().streetName(),
 				faker.address().streetName(), faker.address().streetName(), faker.numerify("#####"), COUNTRY,
 				faker.address().state());
 
 	}
+	
+	@Step("Generating fake customer product")
 
 	private static CustomerProduct generateFakeCustomerProductData() {
 		return new CustomerProduct(DateTimeUtility.getTimeWithDaysAgo(10), faker.numerify("###############"),
@@ -100,6 +108,7 @@ public class FakerDataGenerator {
 
 	}
 
+	@Step("Generating fake problem list data")
 	private static List<Problems> generateFakeProblemsListData() {
 		List<Problems> problemsList = new ArrayList<>();
 		int randomIndex;

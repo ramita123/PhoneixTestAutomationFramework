@@ -11,6 +11,7 @@ import com.api.utils.SpecUtil;
 
 import static com.api.utils.SpecUtil.*;
 
+import io.qameta.allure.Step;
 import io.restassured.response.Response;
 
 public class DashboardService {
@@ -20,6 +21,7 @@ public class DashboardService {
 	private static final String DETAIL_ENDPOINT="/dashboard/details";
 	private static final Logger LOGGER= LogManager.getLogger(DashboardService.class);
 
+	@Step("making api request for the role")
 	public Response count(Role role) {
 		LOGGER.info("making api request to {} for the role {}",COUNT_ENDPOINT,role);
 
@@ -29,6 +31,7 @@ public class DashboardService {
 		return response;
 	}
 	
+	@Step("making api request without auth token")
 	public Response countWithoutAuth() {
 		LOGGER.info("making api request to {} with no auth token",COUNT_ENDPOINT);
 
@@ -39,7 +42,7 @@ public class DashboardService {
 		return response;
 	}
 	
-	
+	@Step("making api request with role and payload")
 	public Response details(Role role,Object payload) {
 		LOGGER.info("making api request to {} with role {} and paload {}",DETAIL_ENDPOINT,role,payload);
 
