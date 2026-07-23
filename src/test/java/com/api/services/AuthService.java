@@ -23,7 +23,7 @@ public class AuthService {
 	
 	@Step("Perform login with user credentials")
 	public Response login(Object userCredentials) {
-		LOGGER.info("Making login request for the payload {}",((UserBean)userCredentials).getUsername());
+		//LOGGER.info("Making login request for the payload {}",((UserBean)userCredentials).getUsername());
 
 	Response response=	given().spec(requestSpec(userCredentials)).
 		when().post(LOGIN_ENDPOINT);
