@@ -46,7 +46,7 @@ public class LoginApiTest {
 	@Story("user should be able to login into the system")
 	@Description("verify login api is working for the user FD")
 	@Severity(SeverityLevel.BLOCKER)
-	@Test(description = "verify login api is working for the user FD", groups = { "api", "regression", "smoke" })
+	@Test(description = "verify login api is working for the user FD", groups = { "api", "regression", "smoke" },retryAnalyzer=com.api.retry.RetryAnalyzer.class)
 	public void loginApiTest() throws IOException {
 
 		authService.login(userCredentials).then().spec(responseSpec_OK()).body("message", equalTo("Success"))
